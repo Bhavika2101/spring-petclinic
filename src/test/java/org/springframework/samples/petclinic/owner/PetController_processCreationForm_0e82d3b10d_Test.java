@@ -79,154 +79,156 @@ import org.springframework.validation.FieldError;
 
 public class PetController_processCreationForm_0e82d3b10d_Test {
 
-    private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
+	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
-    @Mock
-    private OwnerRepository owners;
-    
-    private PetController petController;
+	@Mock
+	private OwnerRepository owners;
 
-    @BeforeEach
-    public void setup() {
-        owners = mock(OwnerRepository.class);
-        petController = new PetController(owners);
-    }
+	private PetController petController;
 
-    @Test
-    public void testHappyPathScenario() {
-        Owner owner = new Owner();
-        Pet pet = new Pet();
-        pet.setName("Buddy");
-        pet.setBirthDate(LocalDate.now().minusDays(10));
-        BindingResult result = mock(BindingResult.class);
-        ModelMap model = new ModelMap();
+	@BeforeEach
+	public void setup() {
+		owners = mock(OwnerRepository.class);
+		petController = new PetController(owners);
+	}
 
-        when(result.hasErrors()).thenReturn(false);
+	@Test
+	public void testHappyPathScenario() {
+		Owner owner = new Owner();
+		Pet pet = new Pet();
+		pet.setName("Buddy");
+		pet.setBirthDate(LocalDate.now().minusDays(10));
+		BindingResult result = mock(BindingResult.class);
+		ModelMap model = new ModelMap();
 
-        String view = petController.processCreationForm(owner, pet, result, model);
+		when(result.hasErrors()).thenReturn(false);
 
-        assertEquals("redirect:/owners/{ownerId}", view);
-        assertTrue(owner.getPets().contains(pet));
-        verify(owners, times(1)).save(owner);
-    }
+		String view = petController.processCreationForm(owner, pet, result, model);
 
-    @Test
-    public void testDuplicatePetNameScenario() {
-        Owner owner = new Owner();
-        Pet pet1 = new Pet();
-        pet1.setName("Fido");
-        owner.addPet(pet1);
+		assertEquals("redirect:/owners/{ownerId}", view);
+		assertTrue(owner.getPets().contains(pet));
+		verify(owners, times(1)).save(owner);
+	}
 
-        Pet pet2 = new Pet();
-        pet2.setName("Fido");
-        pet2.setBirthDate(LocalDate.now().minusDays(10));
-        BindingResult result = mock(BindingResult.class);
-        ModelMap model = new ModelMap();
+	@Test
+	public void testDuplicatePetNameScenario() {
+		Owner owner = new Owner();
+		Pet pet1 = new Pet();
+		pet1.setName("Fido");
+		owner.addPet(pet1);
 
-        when(result.hasErrors()).thenReturn(true);
+		Pet pet2 = new Pet();
+		pet2.setName("Fido");
+		pet2.setBirthDate(LocalDate.now().minusDays(10));
+		BindingResult result = mock(BindingResult.class);
+		ModelMap model = new ModelMap();
 
-        String view = petController.processCreationForm(owner, pet2, result, model);
+		when(result.hasErrors()).thenReturn(true);
 
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-        assertFalse(owner.getPets().contains(pet2));
-    }
+		String view = petController.processCreationForm(owner, pet2, result, model);
 
-    @Test
-    public void testFutureBirthDateScenario() {
-        Owner owner = new Owner();
-        Pet pet = new Pet();
-        pet.setName("Lucky");
-        pet.setBirthDate(LocalDate.now().plusDays(10));
-        BindingResult result = mock(BindingResult.class);
-        ModelMap model = new ModelMap();
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+		assertFalse(owner.getPets().contains(pet2));
+	}
 
-        when(result.hasErrors()).thenReturn(true);
+	@Test
+	public void testFutureBirthDateScenario() {
+		Owner owner = new Owner();
+		Pet pet = new Pet();
+		pet.setName("Lucky");
+		pet.setBirthDate(LocalDate.now().plusDays(10));
+		BindingResult result = mock(BindingResult.class);
+		ModelMap model = new ModelMap();
 
-        String view = petController.processCreationForm(owner, pet, result, model);
+		when(result.hasErrors()).thenReturn(true);
 
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-        assertFalse(owner.getPets().contains(pet));
-    }
+		String view = petController.processCreationForm(owner, pet, result, model);
 
-    @Test
-    public void testBlankPetNameScenario() {
-        Owner owner = new Owner();
-        Pet pet = new Pet();
-        pet.setName("");
-        pet.setBirthDate(LocalDate.now().minusDays(10));
-        BindingResult result = mock(BindingResult.class);
-        ModelMap model = new ModelMap();
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+		assertFalse(owner.getPets().contains(pet));
+	}
 
-        when(result.hasErrors()).thenReturn(false);
+	@Test
+	public void testBlankPetNameScenario() {
+		Owner owner = new Owner();
+		Pet pet = new Pet();
+		pet.setName("");
+		pet.setBirthDate(LocalDate.now().minusDays(10));
+		BindingResult result = mock(BindingResult.class);
+		ModelMap model = new ModelMap();
 
-        String view = petController.processCreationForm(owner, pet, result, model);
+		when(result.hasErrors()).thenReturn(false);
 
-        assertEquals("redirect:/owners/{ownerId}", view);
-        assertTrue(owner.getPets().contains(pet));
-        verify(owners, times(1)).save(owner);
-    }
+		String view = petController.processCreationForm(owner, pet, result, model);
 
-    @Test
-    public void testBindingResultErrorsScenario() {
-        Owner owner = new Owner();
-        Pet pet = new Pet();
-        pet.setName("Buster");
-        pet.setBirthDate(LocalDate.now().minusDays(10));
-        BindingResult result = mock(BindingResult.class);
-        ModelMap model = new ModelMap();
+		assertEquals("redirect:/owners/{ownerId}", view);
+		assertTrue(owner.getPets().contains(pet));
+		verify(owners, times(1)).save(owner);
+	}
 
-        when(result.hasErrors()).thenReturn(true);
-        when(result.getAllErrors()).thenReturn(new ArrayList<>()); // Mock non-field related errors
-        when(result.getFieldErrors()).thenReturn(new ArrayList<>());
+	@Test
+	public void testBindingResultErrorsScenario() {
+		Owner owner = new Owner();
+		Pet pet = new Pet();
+		pet.setName("Buster");
+		pet.setBirthDate(LocalDate.now().minusDays(10));
+		BindingResult result = mock(BindingResult.class);
+		ModelMap model = new ModelMap();
 
-        String view = petController.processCreationForm(owner, pet, result, model);
+		when(result.hasErrors()).thenReturn(true);
+		when(result.getAllErrors()).thenReturn(new ArrayList<>()); // Mock non-field
+																	// related errors
+		when(result.getFieldErrors()).thenReturn(new ArrayList<>());
 
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-        assertFalse(owner.getPets().contains(pet));
-    }
+		String view = petController.processCreationForm(owner, pet, result, model);
 
-    @Test
-    public void testValidPetWithExistingOwnerScenario() {
-        Owner owner = new Owner();
-        Pet pet1 = new Pet();
-        pet1.setName("Max");
-        owner.addPet(pet1);
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+		assertFalse(owner.getPets().contains(pet));
+	}
 
-        Pet pet2 = new Pet();
-        pet2.setName("Buddy");
-        pet2.setBirthDate(LocalDate.now().minusDays(10));
-        BindingResult result = mock(BindingResult.class);
-        ModelMap model = new ModelMap();
+	@Test
+	public void testValidPetWithExistingOwnerScenario() {
+		Owner owner = new Owner();
+		Pet pet1 = new Pet();
+		pet1.setName("Max");
+		owner.addPet(pet1);
 
-        when(result.hasErrors()).thenReturn(false);
+		Pet pet2 = new Pet();
+		pet2.setName("Buddy");
+		pet2.setBirthDate(LocalDate.now().minusDays(10));
+		BindingResult result = mock(BindingResult.class);
+		ModelMap model = new ModelMap();
 
-        String view = petController.processCreationForm(owner, pet2, result, model);
+		when(result.hasErrors()).thenReturn(false);
 
-        assertEquals("redirect:/owners/{ownerId}", view);
-        assertTrue(owner.getPets().contains(pet2));
-        verify(owners, times(1)).save(owner);
-    }
+		String view = petController.processCreationForm(owner, pet2, result, model);
 
-    @Test
-    public void testPetNameCaseSensitivityScenario() {
-        Owner owner = new Owner();
-        Pet pet1 = new Pet();
-        pet1.setName("Buddy");
-        owner.addPet(pet1);
+		assertEquals("redirect:/owners/{ownerId}", view);
+		assertTrue(owner.getPets().contains(pet2));
+		verify(owners, times(1)).save(owner);
+	}
 
-        Pet pet2 = new Pet();
-        pet2.setName("buddy");
-        pet2.setBirthDate(LocalDate.now().minusDays(10));
-        BindingResult result = mock(BindingResult.class);
-        ModelMap model = new ModelMap();
+	@Test
+	public void testPetNameCaseSensitivityScenario() {
+		Owner owner = new Owner();
+		Pet pet1 = new Pet();
+		pet1.setName("Buddy");
+		owner.addPet(pet1);
 
-        when(owner.getPet(pet2.getName(), true)).thenReturn(pet1);
-        when(result.hasErrors()).thenReturn(true);
+		Pet pet2 = new Pet();
+		pet2.setName("buddy");
+		pet2.setBirthDate(LocalDate.now().minusDays(10));
+		BindingResult result = mock(BindingResult.class);
+		ModelMap model = new ModelMap();
 
-        String view = petController.processCreationForm(owner, pet2, result, model);
+		when(owner.getPet(pet2.getName(), true)).thenReturn(pet1);
+		when(result.hasErrors()).thenReturn(true);
 
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-        assertFalse(owner.getPets().contains(pet2));
-        verify(result, times(1)).rejectValue("name", "duplicate", "already exists");
-    }
+		String view = petController.processCreationForm(owner, pet2, result, model);
+
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+		assertFalse(owner.getPets().contains(pet2));
+		verify(result, times(1)).rejectValue("name", "duplicate", "already exists");
+	}
+
 }

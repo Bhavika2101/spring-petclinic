@@ -60,35 +60,36 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class PetController_populatePetTypes_68489030ac_Test {
 
-    @Mock
-    private OwnerRepository owners;
+	@Mock
+	private OwnerRepository owners;
 
-    @InjectMocks
-    private PetController petController;
+	@InjectMocks
+	private PetController petController;
 
-    private PetType dog;
-    private PetType cat;
+	private PetType dog;
 
-    @BeforeEach
-    public void setup() {
-        dog = new PetType();
-        dog.setName("Dog");
-        cat = new PetType();
-        cat.setName("Cat");
-    }
+	private PetType cat;
 
-    @Test
-    public void testPopulatePetTypes_PetTypesAvailable() {
-        List<PetType> petTypes = Arrays.asList(dog, cat);
-        when(owners.findPetTypes()).thenReturn(petTypes);
+	@BeforeEach
+	public void setup() {
+		dog = new PetType();
+		dog.setName("Dog");
+		cat = new PetType();
+		cat.setName("Cat");
+	}
 
-        Collection<PetType> result = petController.populatePetTypes();
+	@Test
+	public void testPopulatePetTypes_PetTypesAvailable() {
+		List<PetType> petTypes = Arrays.asList(dog, cat);
+		when(owners.findPetTypes()).thenReturn(petTypes);
 
-        assertEquals(petTypes.size(), result.size(), "Expected number of pet types does not match");
-        assertTrue(result.containsAll(petTypes), "Returned pet types should match the expected pet types");
-    }
+		Collection<PetType> result = petController.populatePetTypes();
 
-    @Test
+		assertEquals(petTypes.size(), result.size(), "Expected number of pet types does not match");
+		assertTrue(result.containsAll(petTypes), "Returned pet types should match the expected pet types");
+	}
+
+	@Test
     public void testPopulatePetTypes_NoPetTypesAvailable() {
         when(owners.findPetTypes()).thenReturn(Collections.emptyList());
 
@@ -96,4 +97,5 @@ public class PetController_populatePetTypes_68489030ac_Test {
 
         assertTrue(result.isEmpty(), "Expected empty collection when no pet types are available");
     }
+
 }

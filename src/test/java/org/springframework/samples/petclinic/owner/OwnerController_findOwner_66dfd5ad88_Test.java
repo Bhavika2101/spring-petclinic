@@ -60,59 +60,62 @@ import org.mockito.MockitoAnnotations;
 
 public class OwnerController_findOwner_66dfd5ad88_Test {
 
-    @Mock
-    private OwnerRepository ownerRepository;
+	@Mock
+	private OwnerRepository ownerRepository;
 
-    private OwnerController ownerController;
+	private OwnerController ownerController;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        ownerController = new OwnerController(ownerRepository);
-    }
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+		ownerController = new OwnerController(ownerRepository);
+	}
 
-    @Test
-    public void testFindOwnerWhenOwnerIdIsNull() {
-        Owner owner = ownerController.findOwner(null);
-        assertNotNull("Owner should not be null when ownerId is null", owner);
-    }
+	@Test
+	public void testFindOwnerWhenOwnerIdIsNull() {
+		Owner owner = ownerController.findOwner(null);
+		assertNotNull("Owner should not be null when ownerId is null", owner);
+	}
 
-    @Test
-    public void testFindOwnerWhenOwnerIdExists() {
-        Integer ownerId = 1;
-        Owner expectedOwner = new Owner();
-        when(ownerRepository.findById(ownerId)).thenReturn(expectedOwner);
+	@Test
+	public void testFindOwnerWhenOwnerIdExists() {
+		Integer ownerId = 1;
+		Owner expectedOwner = new Owner();
+		when(ownerRepository.findById(ownerId)).thenReturn(expectedOwner);
 
-        Owner actualOwner = ownerController.findOwner(ownerId);
-        assertEquals("Expected and actual owner should be the same when ownerId exists", expectedOwner, actualOwner);
-    }
+		Owner actualOwner = ownerController.findOwner(ownerId);
+		assertEquals("Expected and actual owner should be the same when ownerId exists", expectedOwner, actualOwner);
+	}
 
-    @Test
-    public void testFindOwnerWhenOwnerIdDoesNotExist() {
-        Integer ownerId = 2;
-        when(ownerRepository.findById(ownerId)).thenReturn(null);
+	@Test
+	public void testFindOwnerWhenOwnerIdDoesNotExist() {
+		Integer ownerId = 2;
+		when(ownerRepository.findById(ownerId)).thenReturn(null);
 
-        Owner actualOwner = ownerController.findOwner(ownerId);
-        assertNull("Owner should be null when ownerId does not exist", actualOwner);
-    }
+		Owner actualOwner = ownerController.findOwner(ownerId);
+		assertNull("Owner should be null when ownerId does not exist", actualOwner);
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testFindOwnerWhenOwnerIdIsNegative() {
-        Integer ownerId = -1;
-        when(ownerRepository.findById(ownerId)).thenThrow(new IllegalArgumentException("Invalid ownerId"));
+	@Test(expected = IllegalArgumentException.class)
+	public void testFindOwnerWhenOwnerIdIsNegative() {
+		Integer ownerId = -1;
+		when(ownerRepository.findById(ownerId)).thenThrow(new IllegalArgumentException("Invalid ownerId"));
 
-        ownerController.findOwner(ownerId);
-    }
+		ownerController.findOwner(ownerId);
+	}
 
-    @Test
-    public void testFindOwnerWhenOwnerIdIsZero() {
-        Integer ownerId = 0;
-        when(ownerRepository.findById(ownerId)).thenReturn(null);
+	@Test
+	public void testFindOwnerWhenOwnerIdIsZero() {
+		Integer ownerId = 0;
+		when(ownerRepository.findById(ownerId)).thenReturn(null);
 
-        Owner actualOwner = ownerController.findOwner(ownerId);
-        assertNull("Owner should be null when ownerId is zero", actualOwner);
-    }
+		Owner actualOwner = ownerController.findOwner(ownerId);
+		assertNull("Owner should be null when ownerId is zero", actualOwner);
+	}
 
-    // TODO: Additional tests for very large numbers, boundary conditions, concurrent access, and performance under load can be added here.
-    // These tests might require more complex setup or integration tests with actual database.
+	// TODO: Additional tests for very large numbers, boundary conditions, concurrent
+	// access, and performance under load can be added here.
+	// These tests might require more complex setup or integration tests with actual
+	// database.
+
 }

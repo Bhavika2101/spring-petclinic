@@ -61,31 +61,31 @@ import org.springframework.web.servlet.ModelAndView;
 @ExtendWith(MockitoExtension.class)
 public class OwnerController_processUpdateOwnerForm_a228651f5b_Test {
 
-    private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
-    @Mock
-    private OwnerRepository owners;
+	@Mock
+	private OwnerRepository owners;
 
-    @Mock
-    private BindingResult bindingResult;
+	@Mock
+	private BindingResult bindingResult;
 
-    @InjectMocks
-    private OwnerController ownerController;
+	@InjectMocks
+	private OwnerController ownerController;
 
-    private Owner owner;
+	private Owner owner;
 
-    @BeforeEach
-    void setup() {
-        owner = new Owner();
-        owner.setId(1);
-        owner.setFirstName("John");
-        owner.setLastName("Doe");
-        owner.setAddress("1234 Street");
-        owner.setCity("City");
-        owner.setTelephone("1234567890");
-    }
+	@BeforeEach
+	void setup() {
+		owner = new Owner();
+		owner.setId(1);
+		owner.setFirstName("John");
+		owner.setLastName("Doe");
+		owner.setAddress("1234 Street");
+		owner.setCity("City");
+		owner.setTelephone("1234567890");
+	}
 
-    @Test
+	@Test
     void testProcessUpdateOwnerFormWithErrors() {
         when(bindingResult.hasErrors()).thenReturn(true);
 
@@ -94,7 +94,7 @@ public class OwnerController_processUpdateOwnerForm_a228651f5b_Test {
         assertEquals(VIEWS_OWNER_CREATE_OR_UPDATE_FORM, viewName);
     }
 
-    @Test
+	@Test
     void testProcessUpdateOwnerFormSuccess() {
         when(bindingResult.hasErrors()).thenReturn(false);
 
@@ -104,7 +104,7 @@ public class OwnerController_processUpdateOwnerForm_a228651f5b_Test {
         verify(owners).save(owner);
     }
 
-    @Test
+	@Test
     void testProcessUpdateOwnerFormSaveFailure() {
         when(bindingResult.hasErrors()).thenReturn(false);
         doThrow(new RuntimeException("Simulated save failure")).when(owners).save(owner);
@@ -116,7 +116,7 @@ public class OwnerController_processUpdateOwnerForm_a228651f5b_Test {
         }
     }
 
-    @Test
+	@Test
     void testProcessUpdateOwnerFormInvalidOwnerId() {
         when(bindingResult.hasErrors()).thenReturn(false);
         int invalidOwnerId = -1;
@@ -127,7 +127,7 @@ public class OwnerController_processUpdateOwnerForm_a228651f5b_Test {
         assertEquals("error", viewName);
     }
 
-    @Test
+	@Test
     void testProcessUpdateOwnerFormIdempotency() {
         when(bindingResult.hasErrors()).thenReturn(false);
 
@@ -137,4 +137,5 @@ public class OwnerController_processUpdateOwnerForm_a228651f5b_Test {
         assertEquals(firstAttempt, secondAttempt);
         verify(owners).save(owner); // Should be called exactly once due to idempotency
     }
+
 }

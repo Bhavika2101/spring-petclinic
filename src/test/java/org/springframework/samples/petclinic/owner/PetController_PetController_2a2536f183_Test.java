@@ -67,29 +67,29 @@ import org.mockito.MockitoAnnotations;
 
 public class PetController_PetController_2a2536f183_Test {
 
-    @Mock
-    private OwnerRepository ownerRepository;
+	@Mock
+	private OwnerRepository ownerRepository;
 
-    private PetController petController;
+	private PetController petController;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        petController = new PetController(ownerRepository);
-    }
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+		petController = new PetController(ownerRepository);
+	}
 
-    @Test
-    public void testPetControllerConstructorSuccess() {
-        // Setup the mock behaviour
-        Owner owner = new Owner();
-        when(ownerRepository.findById(1)).thenReturn(owner);
+	@Test
+	public void testPetControllerConstructorSuccess() {
+		// Setup the mock behaviour
+		Owner owner = new Owner();
+		when(ownerRepository.findById(1)).thenReturn(owner);
 
-        // Action and Assert
-        Owner foundOwner = petController.findOwner(1);
-        assertNotNull(foundOwner, "Owner should not be null when retrieved from repository");
-    }
+		// Action and Assert
+		Owner foundOwner = petController.findOwner(1);
+		assertNotNull(foundOwner, "Owner should not be null when retrieved from repository");
+	}
 
-    @Test
+	@Test
     public void testPetControllerConstructorFailure() {
         // Setup the mock behaviour
         when(ownerRepository.findById(1)).thenReturn(null);
@@ -99,4 +99,5 @@ public class PetController_PetController_2a2536f183_Test {
             petController.findOwner(1);
         }, "Expected findOwner to throw, but it didn't");
     }
+
 }

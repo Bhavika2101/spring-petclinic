@@ -55,96 +55,98 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 public class OwnerController_initCreationForm_d86a3fe6d2_Test {
 
-    private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
+	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
-    @Mock
-    private OwnerRepository owners;
+	@Mock
+	private OwnerRepository owners;
 
-    private OwnerController ownerController;
+	private OwnerController ownerController;
 
-    @BeforeEach
-    void setup() {
-        ownerController = new OwnerController(owners);
-    }
+	@BeforeEach
+	void setup() {
+		ownerController = new OwnerController(owners);
+	}
 
-    @Test
-    void testInitialization() {
-        Map<String, Object> model = new HashMap<>();
-        String viewName = ownerController.initCreationForm(model);
+	@Test
+	void testInitialization() {
+		Map<String, Object> model = new HashMap<>();
+		String viewName = ownerController.initCreationForm(model);
 
-        assertEquals(VIEWS_OWNER_CREATE_OR_UPDATE_FORM, viewName);
-        assertNotNull(model.get("owner"));
-        assertEquals(Owner.class, model.get("owner").getClass());
-    }
+		assertEquals(VIEWS_OWNER_CREATE_OR_UPDATE_FORM, viewName);
+		assertNotNull(model.get("owner"));
+		assertEquals(Owner.class, model.get("owner").getClass());
+	}
 
-    @Test
-    void testModelContent() {
-        Map<String, Object> model = new HashMap<>();
-        ownerController.initCreationForm(model);
-        Owner owner = (Owner) model.get("owner");
+	@Test
+	void testModelContent() {
+		Map<String, Object> model = new HashMap<>();
+		ownerController.initCreationForm(model);
+		Owner owner = (Owner) model.get("owner");
 
-        assertEquals("", owner.getAddress());
-        assertEquals("", owner.getCity());
-        assertEquals("", owner.getTelephone());
-        assertNotNull(owner.getPets());
-        assertEquals(0, owner.getPets().size());
-    }
+		assertEquals("", owner.getAddress());
+		assertEquals("", owner.getCity());
+		assertEquals("", owner.getTelephone());
+		assertNotNull(owner.getPets());
+		assertEquals(0, owner.getPets().size());
+	}
 
-    @Test
-    void testModelIntegrity() {
-        Map<String, Object> model = new HashMap<>();
-        model.put("existingAttribute", "value");
-        ownerController.initCreationForm(model);
+	@Test
+	void testModelIntegrity() {
+		Map<String, Object> model = new HashMap<>();
+		model.put("existingAttribute", "value");
+		ownerController.initCreationForm(model);
 
-        assertEquals("value", model.get("existingAttribute"));
-        assertNotNull(model.get("owner"));
-    }
+		assertEquals("value", model.get("existingAttribute"));
+		assertNotNull(model.get("owner"));
+	}
 
-    @Test
-    void testNullModel() {
-        assertThrows(NullPointerException.class, () -> ownerController.initCreationForm(null));
-    }
+	@Test
+	void testNullModel() {
+		assertThrows(NullPointerException.class, () -> ownerController.initCreationForm(null));
+	}
 
-    @Test
-    void testModelStatePersistence() {
-        Map<String, Object> model = new HashMap<>();
-        model.put("unchanged", "unchangedValue");
-        ownerController.initCreationForm(model);
+	@Test
+	void testModelStatePersistence() {
+		Map<String, Object> model = new HashMap<>();
+		model.put("unchanged", "unchangedValue");
+		ownerController.initCreationForm(model);
 
-        assertEquals("unchangedValue", model.get("unchanged"));
-    }
+		assertEquals("unchangedValue", model.get("unchanged"));
+	}
 
-    @Test
-    void testConcurrency() throws InterruptedException {
-        Map<String, Object> sharedModel = new ConcurrentHashMap<>();
-        Runnable task = () -> ownerController.initCreationForm(sharedModel);
-        Thread thread1 = new Thread(task);
-        Thread thread2 = new Thread(task);
-        thread1.start();
-        thread2.start();
-        thread1.join();
-        thread2.join();
+	@Test
+	void testConcurrency() throws InterruptedException {
+		Map<String, Object> sharedModel = new ConcurrentHashMap<>();
+		Runnable task = () -> ownerController.initCreationForm(sharedModel);
+		Thread thread1 = new Thread(task);
+		Thread thread2 = new Thread(task);
+		thread1.start();
+		thread2.start();
+		thread1.join();
+		thread2.join();
 
-        assertNotNull(sharedModel.get("owner"));
-        assertEquals(Owner.class, sharedModel.get("owner").getClass());
-    }
+		assertNotNull(sharedModel.get("owner"));
+		assertEquals(Owner.class, sharedModel.get("owner").getClass());
+	}
 
-    @Test
-    void testSecurity() {
-        Map<String, Object> model = new HashMap<>();
-        ownerController.initCreationForm(model);
-        Owner owner = (Owner) model.get("owner");
+	@Test
+	void testSecurity() {
+		Map<String, Object> model = new HashMap<>();
+		ownerController.initCreationForm(model);
+		Owner owner = (Owner) model.get("owner");
 
-        // TODO: Add security-related assertions once security requirements are defined
-    }
+		// TODO: Add security-related assertions once security requirements are defined
+	}
 
-    @Test
-    void testIntegrationWithWebFramework() {
-        // TODO: Mock the Spring MVC environment and test integration with the web framework
-    }
+	@Test
+	void testIntegrationWithWebFramework() {
+		// TODO: Mock the Spring MVC environment and test integration with the web
+		// framework
+	}
 
-    @Test
-    void testErrorHandling() {
-        // TODO: Force an error condition and test error handling
-    }
+	@Test
+	void testErrorHandling() {
+		// TODO: Force an error condition and test error handling
+	}
+
 }

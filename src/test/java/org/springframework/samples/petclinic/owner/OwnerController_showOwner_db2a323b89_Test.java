@@ -68,32 +68,33 @@ import org.springframework.web.servlet.ModelAndView;
 @ExtendWith(MockitoExtension.class)
 public class OwnerController_showOwner_db2a323b89_Test {
 
-    private OwnerRepository owners;
-    private OwnerController ownerController;
+	private OwnerRepository owners;
 
-    @BeforeEach
-    public void setup() {
-        owners = mock(OwnerRepository.class);
-        ownerController = new OwnerController(owners);
-    }
+	private OwnerController ownerController;
 
-    @Test
-    public void testShowOwner_ValidOwnerId() {
-        // Given
-        Owner expectedOwner = new Owner();
-        expectedOwner.setId(1);
-        when(owners.findById(anyInt())).thenReturn(expectedOwner);
+	@BeforeEach
+	public void setup() {
+		owners = mock(OwnerRepository.class);
+		ownerController = new OwnerController(owners);
+	}
 
-        // When
-        ModelAndView mav = ownerController.showOwner(1);
+	@Test
+	public void testShowOwner_ValidOwnerId() {
+		// Given
+		Owner expectedOwner = new Owner();
+		expectedOwner.setId(1);
+		when(owners.findById(anyInt())).thenReturn(expectedOwner);
 
-        // Then
-        assertNotNull(mav);
-        assertEquals("owners/ownerDetails", mav.getViewName());
-        assertEquals(expectedOwner, mav.getModel().get("owner"));
-    }
+		// When
+		ModelAndView mav = ownerController.showOwner(1);
 
-    @Test
+		// Then
+		assertNotNull(mav);
+		assertEquals("owners/ownerDetails", mav.getViewName());
+		assertEquals(expectedOwner, mav.getModel().get("owner"));
+	}
+
+	@Test
     public void testShowOwner_OwnerIdDoesNotExist() {
         // Given
         when(owners.findById(anyInt())).thenReturn(null);
@@ -107,5 +108,6 @@ public class OwnerController_showOwner_db2a323b89_Test {
         assertEquals(null, mav.getModel().get("owner"));
     }
 
-    // TODO: Add more test cases for the remaining scenarios
+	// TODO: Add more test cases for the remaining scenarios
+
 }

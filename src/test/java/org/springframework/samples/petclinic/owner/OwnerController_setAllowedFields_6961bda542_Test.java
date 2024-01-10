@@ -63,103 +63,106 @@ import org.springframework.web.bind.WebDataBinder;
 
 public class OwnerController_setAllowedFields_6961bda542_Test {
 
-    private WebDataBinder dataBinder;
-    private Owner owner;
-    private BindingResult bindingResult;
+	private WebDataBinder dataBinder;
 
-    @BeforeEach
-    public void setup() {
-        owner = new Owner();
-        bindingResult = new BeanPropertyBindingResult(owner, "owner");
-        dataBinder = new WebDataBinder(owner, "owner");
-        setAllowedFields(dataBinder);
-    }
+	private Owner owner;
 
-    public void setAllowedFields(WebDataBinder dataBinder) {
-        dataBinder.setDisallowedFields("id");
-    }
+	private BindingResult bindingResult;
 
-    @Test
-    public void testDirectFieldAccessAttempt() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
-        assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound");
-    }
+	@BeforeEach
+	public void setup() {
+		owner = new Owner();
+		bindingResult = new BeanPropertyBindingResult(owner, "owner");
+		dataBinder = new WebDataBinder(owner, "owner");
+		setAllowedFields(dataBinder);
+	}
 
-    @Test
-    public void testIndirectFieldAccessAttempt() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("owner.id", "10")));
-        assertFalse(bindingResult.hasFieldErrors("owner.id"), "Field 'owner.id' must not be bound");
-    }
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
+	}
 
-    @Test
-    public void testAllowedFields() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("name", "John Doe")));
-        assertTrue(bindingResult.hasFieldErrors("name"), "Field 'name' should be allowed to be bound");
-    }
+	@Test
+	public void testDirectFieldAccessAttempt() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
+		assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound");
+	}
 
-    @Test
-    public void testBindingWithDifferentDataTypes() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("id", 10)));
-        assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound regardless of data type");
-        dataBinder.bind(new MutablePropertyValues(Map.of("id", "string value")));
-        assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound regardless of data type");
-    }
+	@Test
+	public void testIndirectFieldAccessAttempt() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("owner.id", "10")));
+		assertFalse(bindingResult.hasFieldErrors("owner.id"), "Field 'owner.id' must not be bound");
+	}
 
-    @Test
-    public void testCaseSensitivity() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("ID", "10")));
-        assertFalse(bindingResult.hasFieldErrors("ID"), "Field 'ID' must not be bound");
-        dataBinder.bind(new MutablePropertyValues(Map.of("Id", "10")));
-        assertFalse(bindingResult.hasFieldErrors("Id"), "Field 'Id' must not be bound");
-    }
+	@Test
+	public void testAllowedFields() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("name", "John Doe")));
+		assertTrue(bindingResult.hasFieldErrors("name"), "Field 'name' should be allowed to be bound");
+	}
 
-    @Test
-    public void testBindingResultEffects() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
-        assertFalse(bindingResult.hasErrors(), "BindingResult should not have errors for disallowed field 'id'");
-    }
+	@Test
+	public void testBindingWithDifferentDataTypes() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("id", 10)));
+		assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound regardless of data type");
+		dataBinder.bind(new MutablePropertyValues(Map.of("id", "string value")));
+		assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound regardless of data type");
+	}
 
-    @Test
-    public void testProgrammaticBinding() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
-        assertNull(owner.getId(), "Programmatic binding should not set disallowed field 'id'");
-    }
+	@Test
+	public void testCaseSensitivity() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("ID", "10")));
+		assertFalse(bindingResult.hasFieldErrors("ID"), "Field 'ID' must not be bound");
+		dataBinder.bind(new MutablePropertyValues(Map.of("Id", "10")));
+		assertFalse(bindingResult.hasFieldErrors("Id"), "Field 'Id' must not be bound");
+	}
 
-    @Test
-    public void testCombinationsWithAllowedFields() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("id", "10", "name", "John Doe")));
-        assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound");
-        assertTrue(bindingResult.hasFieldErrors("name"), "Field 'name' should be bound");
-    }
+	@Test
+	public void testBindingResultEffects() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
+		assertFalse(bindingResult.hasErrors(), "BindingResult should not have errors for disallowed field 'id'");
+	}
 
-    @Test
-    public void testImpactOnModelAttributes() {
-        dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
-        assertNull(owner.getId(), "Model attribute 'id' should not be impacted");
-    }
+	@Test
+	public void testProgrammaticBinding() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
+		assertNull(owner.getId(), "Programmatic binding should not set disallowed field 'id'");
+	}
 
-    @Test
-    public void testSubclassBehavior() {
-        // TODO: Create a subclass of Owner and test binding the 'id' field
-    }
+	@Test
+	public void testCombinationsWithAllowedFields() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("id", "10", "name", "John Doe")));
+		assertFalse(bindingResult.hasFieldErrors("id"), "Field 'id' must not be bound");
+		assertTrue(bindingResult.hasFieldErrors("name"), "Field 'name' should be bound");
+	}
 
-    @Test
-    public void testReflectionOrDirectFieldManipulation() {
-        // TODO: Use reflection to attempt to set the 'id' field and ensure it is not set
-    }
+	@Test
+	public void testImpactOnModelAttributes() {
+		dataBinder.bind(new MutablePropertyValues(Map.of("id", "10")));
+		assertNull(owner.getId(), "Model attribute 'id' should not be impacted");
+	}
 
-    @Test
-    public void testPersistenceLayerIntegration() {
-        // TODO: Save the entity and ensure 'id' is not affected
-    }
+	@Test
+	public void testSubclassBehavior() {
+		// TODO: Create a subclass of Owner and test binding the 'id' field
+	}
 
-    @Test
-    public void testCustomBinderConfiguration() {
-        // TODO: Test custom binder configurations with disallowed 'id' field
-    }
+	@Test
+	public void testReflectionOrDirectFieldManipulation() {
+		// TODO: Use reflection to attempt to set the 'id' field and ensure it is not set
+	}
 
-    @Test
-    public void testCrossFieldValidation() {
-        // TODO: Test cross-field validation with disallowed 'id' field
-    }
+	@Test
+	public void testPersistenceLayerIntegration() {
+		// TODO: Save the entity and ensure 'id' is not affected
+	}
+
+	@Test
+	public void testCustomBinderConfiguration() {
+		// TODO: Test custom binder configurations with disallowed 'id' field
+	}
+
+	@Test
+	public void testCrossFieldValidation() {
+		// TODO: Test cross-field validation with disallowed 'id' field
+	}
+
 }

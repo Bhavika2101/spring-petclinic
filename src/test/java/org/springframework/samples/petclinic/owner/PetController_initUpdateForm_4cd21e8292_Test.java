@@ -72,123 +72,126 @@ import org.springframework.ui.ModelMap;
 
 class PetController_initUpdateForm_4cd21e8292_Test {
 
-    private Owner owner;
-    private ModelMap modelMap;
-    private PetController petController;
+	private Owner owner;
 
-    @BeforeEach
-    void setup() {
-        OwnerRepository owners = mock(OwnerRepository.class);
-        petController = new PetController(owners);
-        owner = new Owner();
-        modelMap = new ModelMap();
-    }
+	private ModelMap modelMap;
 
-    @Test
-    void testInitUpdateForm_PetExists() {
-        Pet pet = new Pet();
-        pet.setId(1);
-        owner.addPet(pet);
+	private PetController petController;
 
-        String view = petController.initUpdateForm(owner, 1, modelMap);
+	@BeforeEach
+	void setup() {
+		OwnerRepository owners = mock(OwnerRepository.class);
+		petController = new PetController(owners);
+		owner = new Owner();
+		modelMap = new ModelMap();
+	}
 
-        assertEquals("pets/createOrUpdatePetForm", view);
-        assertEquals(pet, modelMap.get("pet"));
-    }
+	@Test
+	void testInitUpdateForm_PetExists() {
+		Pet pet = new Pet();
+		pet.setId(1);
+		owner.addPet(pet);
 
-    @Test
-    void testInitUpdateForm_PetDoesNotExist() {
-        assertThrows(NullPointerException.class, () -> {
-            petController.initUpdateForm(owner, 2, modelMap);
-        });
-    }
+		String view = petController.initUpdateForm(owner, 1, modelMap);
 
-    @Test
-    void testInitUpdateForm_OwnerHasNoPets() {
-        assertThrows(NullPointerException.class, () -> {
-            petController.initUpdateForm(owner, 1, modelMap);
-        });
-    }
+		assertEquals("pets/createOrUpdatePetForm", view);
+		assertEquals(pet, modelMap.get("pet"));
+	}
 
-    @Test
-    void testInitUpdateForm_ModelMapUpdatedCorrectly() {
-        Pet pet = new Pet();
-        pet.setId(1);
-        owner.addPet(pet);
+	@Test
+	void testInitUpdateForm_PetDoesNotExist() {
+		assertThrows(NullPointerException.class, () -> {
+			petController.initUpdateForm(owner, 2, modelMap);
+		});
+	}
 
-        petController.initUpdateForm(owner, 1, modelMap);
+	@Test
+	void testInitUpdateForm_OwnerHasNoPets() {
+		assertThrows(NullPointerException.class, () -> {
+			petController.initUpdateForm(owner, 1, modelMap);
+		});
+	}
 
-        assertEquals(pet, modelMap.get("pet"));
-    }
+	@Test
+	void testInitUpdateForm_ModelMapUpdatedCorrectly() {
+		Pet pet = new Pet();
+		pet.setId(1);
+		owner.addPet(pet);
 
-    @Test
-    void testInitUpdateForm_InvalidPetId() {
-        assertThrows(NullPointerException.class, () -> {
-            petController.initUpdateForm(owner, -1, modelMap);
-        });
-    }
+		petController.initUpdateForm(owner, 1, modelMap);
 
-    @Test
-    void testInitUpdateForm_OwnerIsNull() {
-        assertThrows(NullPointerException.class, () -> {
-            petController.initUpdateForm(null, 1, modelMap);
-        });
-    }
+		assertEquals(pet, modelMap.get("pet"));
+	}
 
-    @Test
-    void testInitUpdateForm_ModelMapIsNull() {
-        Pet pet = new Pet();
-        pet.setId(1);
-        owner.addPet(pet);
+	@Test
+	void testInitUpdateForm_InvalidPetId() {
+		assertThrows(NullPointerException.class, () -> {
+			petController.initUpdateForm(owner, -1, modelMap);
+		});
+	}
 
-        assertThrows(NullPointerException.class, () -> {
-            petController.initUpdateForm(owner, 1, null);
-        });
-    }
+	@Test
+	void testInitUpdateForm_OwnerIsNull() {
+		assertThrows(NullPointerException.class, () -> {
+			petController.initUpdateForm(null, 1, modelMap);
+		});
+	}
 
-    @Test
-    void testInitUpdateForm_CorrectViewReturned() {
-        Pet pet = new Pet();
-        pet.setId(1);
-        owner.addPet(pet);
+	@Test
+	void testInitUpdateForm_ModelMapIsNull() {
+		Pet pet = new Pet();
+		pet.setId(1);
+		owner.addPet(pet);
 
-        String view = petController.initUpdateForm(owner, 1, modelMap);
+		assertThrows(NullPointerException.class, () -> {
+			petController.initUpdateForm(owner, 1, null);
+		});
+	}
 
-        assertEquals("pets/createOrUpdatePetForm", view);
-    }
+	@Test
+	void testInitUpdateForm_CorrectViewReturned() {
+		Pet pet = new Pet();
+		pet.setId(1);
+		owner.addPet(pet);
 
-    @Test
-    void testInitUpdateForm_PathVariableIntegrity() {
-        Pet pet = new Pet();
-        pet.setId(1);
-        owner.addPet(pet);
+		String view = petController.initUpdateForm(owner, 1, modelMap);
 
-        String view = petController.initUpdateForm(owner, 1, modelMap);
+		assertEquals("pets/createOrUpdatePetForm", view);
+	}
 
-        assertEquals("pets/createOrUpdatePetForm", view);
-        assertEquals(pet, modelMap.get("pet"));
-    }
+	@Test
+	void testInitUpdateForm_PathVariableIntegrity() {
+		Pet pet = new Pet();
+		pet.setId(1);
+		owner.addPet(pet);
 
-    @Test
-    void testInitUpdateForm_ConcurrentAccess() {
-        Pet pet1 = new Pet();
-        pet1.setId(1);
-        Pet pet2 = new Pet();
-        pet2.setId(2);
-        owner.addPet(pet1);
-        owner.addPet(pet2);
+		String view = petController.initUpdateForm(owner, 1, modelMap);
 
-        Runnable task1 = () -> petController.initUpdateForm(owner, 1, new ModelMap());
-        Runnable task2 = () -> petController.initUpdateForm(owner, 2, new ModelMap());
+		assertEquals("pets/createOrUpdatePetForm", view);
+		assertEquals(pet, modelMap.get("pet"));
+	}
 
-        Thread thread1 = new Thread(task1);
-        Thread thread2 = new Thread(task2);
+	@Test
+	void testInitUpdateForm_ConcurrentAccess() {
+		Pet pet1 = new Pet();
+		pet1.setId(1);
+		Pet pet2 = new Pet();
+		pet2.setId(2);
+		owner.addPet(pet1);
+		owner.addPet(pet2);
 
-        thread1.start();
-        thread2.start();
+		Runnable task1 = () -> petController.initUpdateForm(owner, 1, new ModelMap());
+		Runnable task2 = () -> petController.initUpdateForm(owner, 2, new ModelMap());
 
-        // TODO: Add proper concurrent access assertions (This is a placeholder)
-        assertEquals("pets/createOrUpdatePetForm", petController.initUpdateForm(owner, 1, new ModelMap()));
-        assertEquals("pets/createOrUpdatePetForm", petController.initUpdateForm(owner, 2, new ModelMap()));
-    }
+		Thread thread1 = new Thread(task1);
+		Thread thread2 = new Thread(task2);
+
+		thread1.start();
+		thread2.start();
+
+		// TODO: Add proper concurrent access assertions (This is a placeholder)
+		assertEquals("pets/createOrUpdatePetForm", petController.initUpdateForm(owner, 1, new ModelMap()));
+		assertEquals("pets/createOrUpdatePetForm", petController.initUpdateForm(owner, 2, new ModelMap()));
+	}
+
 }

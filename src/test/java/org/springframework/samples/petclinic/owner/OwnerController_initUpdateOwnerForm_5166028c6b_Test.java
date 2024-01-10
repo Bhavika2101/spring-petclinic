@@ -82,32 +82,32 @@ import org.springframework.ui.Model;
 
 public class OwnerController_initUpdateOwnerForm_5166028c6b_Test {
 
-    @Mock
-    private OwnerRepository owners;
+	@Mock
+	private OwnerRepository owners;
 
-    @Mock
-    private Model model;
+	@Mock
+	private Model model;
 
-    private OwnerController ownerController;
+	private OwnerController ownerController;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        ownerController = new OwnerController(owners);
-    }
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+		ownerController = new OwnerController(owners);
+	}
 
-    @Test
-    public void testInitUpdateOwnerForm_validOwner() {
-        Owner mockOwner = new Owner();
-        mockOwner.setId(1);
-        when(owners.findById(anyInt())).thenReturn(mockOwner);
+	@Test
+	public void testInitUpdateOwnerForm_validOwner() {
+		Owner mockOwner = new Owner();
+		mockOwner.setId(1);
+		when(owners.findById(anyInt())).thenReturn(mockOwner);
 
-        String viewName = ownerController.initUpdateOwnerForm(1, model);
+		String viewName = ownerController.initUpdateOwnerForm(1, model);
 
-        assertEquals("owners/createOrUpdateOwnerForm", viewName);
-    }
+		assertEquals("owners/createOrUpdateOwnerForm", viewName);
+	}
 
-    @Test
+	@Test
     public void testInitUpdateOwnerForm_invalidOwner() {
         when(owners.findById(anyInt())).thenReturn(null);
 
@@ -115,4 +115,5 @@ public class OwnerController_initUpdateOwnerForm_5166028c6b_Test {
 
         assertEquals("owners/createOrUpdateOwnerForm", viewName);
     }
+
 }

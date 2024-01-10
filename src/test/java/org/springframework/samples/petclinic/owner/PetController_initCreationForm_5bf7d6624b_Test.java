@@ -77,103 +77,109 @@ import org.springframework.ui.ModelMap;
 
 public class PetController_initCreationForm_5bf7d6624b_Test {
 
-    private PetController petController;
-    private Owner owner;
-    private ModelMap model;
+	private PetController petController;
 
-    @BeforeEach
-    public void setUp() {
-        owner = new Owner();
-        model = new ModelMap();
-        OwnerRepository owners = new OwnerRepository() {
-            // TODO: Mock the necessary methods if required
-        };
-        petController = new PetController(owners);
-    }
+	private Owner owner;
 
-    @Test
-    public void testInitCreationForm_OwnerWithoutPets() {
-        String view = petController.initCreationForm(owner, model);
-        Pet pet = (Pet) model.get("pet");
+	private ModelMap model;
 
-        assertNotNull(pet, "New pet should be added to the owner");
-        assertEquals("pets/createOrUpdatePetForm", view, "View should match the creation form");
-    }
+	@BeforeEach
+	public void setUp() {
+		owner = new Owner();
+		model = new ModelMap();
+		OwnerRepository owners = new OwnerRepository() {
+			// TODO: Mock the necessary methods if required
+		};
+		petController = new PetController(owners);
+	}
 
-    @Test
-    public void testInitCreationForm_OwnerWithExistingPets() {
-        owner.addPet(new Pet()); // Adding an existing pet
-        String view = petController.initCreationForm(owner, model);
-        Pet pet = (Pet) model.get("pet");
+	@Test
+	public void testInitCreationForm_OwnerWithoutPets() {
+		String view = petController.initCreationForm(owner, model);
+		Pet pet = (Pet) model.get("pet");
 
-        assertNotNull(pet, "New pet should be added to the owner");
-        assertEquals(2, owner.getPets().size(), "Owner should have two pets now");
-        assertEquals("pets/createOrUpdatePetForm", view, "View should match the creation form");
-    }
+		assertNotNull(pet, "New pet should be added to the owner");
+		assertEquals("pets/createOrUpdatePetForm", view, "View should match the creation form");
+	}
 
-    @Test
-    public void testInitCreationForm_ModelMapBinding() {
-        petController.initCreationForm(owner, model);
+	@Test
+	public void testInitCreationForm_OwnerWithExistingPets() {
+		owner.addPet(new Pet()); // Adding an existing pet
+		String view = petController.initCreationForm(owner, model);
+		Pet pet = (Pet) model.get("pet");
 
-        assertEquals(Pet.class, model.get("pet").getClass(), "Model should have a 'pet' attribute of type Pet");
-    }
+		assertNotNull(pet, "New pet should be added to the owner");
+		assertEquals(2, owner.getPets().size(), "Owner should have two pets now");
+		assertEquals("pets/createOrUpdatePetForm", view, "View should match the creation form");
+	}
 
-    @Test
-    public void testInitCreationForm_ViewResolution() {
-        String view = petController.initCreationForm(owner, model);
+	@Test
+	public void testInitCreationForm_ModelMapBinding() {
+		petController.initCreationForm(owner, model);
 
-        assertEquals("pets/createOrUpdatePetForm", view, "Method should return the correct view name");
-    }
+		assertEquals(Pet.class, model.get("pet").getClass(), "Model should have a 'pet' attribute of type Pet");
+	}
 
-    @Test
-    public void testInitCreationForm_OwnerObjectNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            petController.initCreationForm(null, model);
-        }, "Expected an IllegalArgumentException to be thrown");
+	@Test
+	public void testInitCreationForm_ViewResolution() {
+		String view = petController.initCreationForm(owner, model);
 
-        assertEquals("Owner object cannot be null", exception.getMessage(), "Exception message should match expected message");
-    }
+		assertEquals("pets/createOrUpdatePetForm", view, "Method should return the correct view name");
+	}
 
-    @Test
-    public void testInitCreationForm_ModelMapNull() {
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            petController.initCreationForm(owner, null);
-        }, "Expected an IllegalArgumentException to be thrown");
+	@Test
+	public void testInitCreationForm_OwnerObjectNull() {
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			petController.initCreationForm(null, model);
+		}, "Expected an IllegalArgumentException to be thrown");
 
-        assertEquals("ModelMap object cannot be null", exception.getMessage(), "Exception message should match expected message");
-    }
+		assertEquals("Owner object cannot be null", exception.getMessage(),
+				"Exception message should match expected message");
+	}
 
-    @Test
-    public void testInitCreationForm_Consistency() {
-        petController.initCreationForm(owner, model);
-        Pet firstPet = (Pet) model.get("pet");
+	@Test
+	public void testInitCreationForm_ModelMapNull() {
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+			petController.initCreationForm(owner, null);
+		}, "Expected an IllegalArgumentException to be thrown");
 
-        model = new ModelMap(); // Reset model for the second call
-        petController.initCreationForm(owner, model);
-        Pet secondPet = (Pet) model.get("pet");
+		assertEquals("ModelMap object cannot be null", exception.getMessage(),
+				"Exception message should match expected message");
+	}
 
-        assertNotNull(firstPet, "First pet should not be null");
-        assertNotNull(secondPet, "Second pet should not be null");
-        assertEquals(2, owner.getPets().size(), "Owner should have two pets after two calls");
-    }
+	@Test
+	public void testInitCreationForm_Consistency() {
+		petController.initCreationForm(owner, model);
+		Pet firstPet = (Pet) model.get("pet");
 
-    @Test
-    public void testInitCreationForm_PersistenceIgnored() {
-        // TODO: Mock the OwnerRepository's save method to ensure it is not called during this test
-    }
+		model = new ModelMap(); // Reset model for the second call
+		petController.initCreationForm(owner, model);
+		Pet secondPet = (Pet) model.get("pet");
 
-    @Test
-    public void testInitCreationForm_OwnerStateValidation() {
-        // TODO: Add necessary state to the owner and validate it is not violated
-    }
+		assertNotNull(firstPet, "First pet should not be null");
+		assertNotNull(secondPet, "Second pet should not be null");
+		assertEquals(2, owner.getPets().size(), "Owner should have two pets after two calls");
+	}
 
-    @Test
-    public void testInitCreationForm_PetObjectInitialization() {
-        petController.initCreationForm(owner, model);
-        Pet pet = (Pet) model.get("pet");
+	@Test
+	public void testInitCreationForm_PersistenceIgnored() {
+		// TODO: Mock the OwnerRepository's save method to ensure it is not called during
+		// this test
+	}
 
-        assertNotNull(pet.getBirthDate(), "BirthDate should be initialized");
-        assertNotNull(pet.getType(), "Type should be initialized");
-        assertNotNull(pet.getVisits(), "Visits should be initialized and not null");
-    }
+	@Test
+	public void testInitCreationForm_OwnerStateValidation() {
+		// TODO: Add necessary state to the owner and validate it is not violated
+	}
+
+	@Test
+	public void testInitCreationForm_PetObjectInitialization() {
+		petController.initCreationForm(owner, model);
+		Pet pet = (Pet) model.get("pet");
+
+		assertNotNull(pet.getBirthDate(), "BirthDate should be initialized");
+		assertNotNull(pet.getType(), "Type should be initialized");
+		assertNotNull(pet.getVisits(), "Visits should be initialized and not null");
+	}
+
 }

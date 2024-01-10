@@ -60,38 +60,40 @@ import org.mockito.Mockito;
 
 public class PetController_findOwner_0895b41fd2_Test {
 
-    private OwnerRepository owners;
-    private PetController petController;
+	private OwnerRepository owners;
 
-    @BeforeEach
-    public void setup() {
-        owners = Mockito.mock(OwnerRepository.class);
-        petController = new PetController(owners);
-    }
+	private PetController petController;
 
-    @Test
-    public void testFindOwner_OwnerIDFound() {
-        int ownerId = 1;
-        Owner expectedOwner = new Owner();
-        Mockito.when(owners.findById(ownerId)).thenReturn(expectedOwner);
+	@BeforeEach
+	public void setup() {
+		owners = Mockito.mock(OwnerRepository.class);
+		petController = new PetController(owners);
+	}
 
-        Owner actualOwner = petController.findOwner(ownerId);
+	@Test
+	public void testFindOwner_OwnerIDFound() {
+		int ownerId = 1;
+		Owner expectedOwner = new Owner();
+		Mockito.when(owners.findById(ownerId)).thenReturn(expectedOwner);
 
-        assertEquals(expectedOwner, actualOwner);
-    }
+		Owner actualOwner = petController.findOwner(ownerId);
 
-    @Test
-    public void testFindOwner_OwnerIDNotFound() {
-        int ownerId = 2;
-        Mockito.when(owners.findById(ownerId)).thenReturn(null);
+		assertEquals(expectedOwner, actualOwner);
+	}
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            petController.findOwner(ownerId);
-        });
+	@Test
+	public void testFindOwner_OwnerIDNotFound() {
+		int ownerId = 2;
+		Mockito.when(owners.findById(ownerId)).thenReturn(null);
 
-        String expectedMessage = "Owner ID not found: " + ownerId;
-        String actualMessage = exception.getMessage();
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+			petController.findOwner(ownerId);
+		});
 
-        assertEquals(expectedMessage, actualMessage);
-    }
+		String expectedMessage = "Owner ID not found: " + ownerId;
+		String actualMessage = exception.getMessage();
+
+		assertEquals(expectedMessage, actualMessage);
+	}
+
 }

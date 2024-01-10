@@ -80,89 +80,91 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class PetTypeFormatter_parse_2ffcaf4072_Test {
 
-    @Mock
-    private OwnerRepository owners;
+	@Mock
+	private OwnerRepository owners;
 
-    private PetTypeFormatter petTypeFormatter;
+	private PetTypeFormatter petTypeFormatter;
 
-    @BeforeEach
-    public void setUp() {
-        petTypeFormatter = new PetTypeFormatter(owners);
-    }
+	@BeforeEach
+	public void setUp() {
+		petTypeFormatter = new PetTypeFormatter(owners);
+	}
 
-    @Test
-    public void testParse_ValidPetTypeName() throws ParseException {
-        // Arrange
-        String inputText = "Dog";
-        PetType petType = new PetType();
-        petType.setName(inputText);
-        List<PetType> petTypes = new ArrayList<>();
-        petTypes.add(petType);
-        when(owners.findPetTypes()).thenReturn(petTypes);
+	@Test
+	public void testParse_ValidPetTypeName() throws ParseException {
+		// Arrange
+		String inputText = "Dog";
+		PetType petType = new PetType();
+		petType.setName(inputText);
+		List<PetType> petTypes = new ArrayList<>();
+		petTypes.add(petType);
+		when(owners.findPetTypes()).thenReturn(petTypes);
 
-        // Act
-        PetType result = petTypeFormatter.parse(inputText, Locale.ENGLISH);
+		// Act
+		PetType result = petTypeFormatter.parse(inputText, Locale.ENGLISH);
 
-        // Assert
-        assertEquals(petType, result);
-    }
+		// Assert
+		assertEquals(petType, result);
+	}
 
-    @Test
-    public void testParse_InvalidPetTypeName() {
-        // Arrange
-        String inputText = "Dragon";
-        when(owners.findPetTypes()).thenReturn(new ArrayList<>());
+	@Test
+	public void testParse_InvalidPetTypeName() {
+		// Arrange
+		String inputText = "Dragon";
+		when(owners.findPetTypes()).thenReturn(new ArrayList<>());
 
-        // Act & Assert
-        ParseException exception = assertThrows(ParseException.class, () -> {
-            petTypeFormatter.parse(inputText, Locale.ENGLISH);
-        });
+		// Act & Assert
+		ParseException exception = assertThrows(ParseException.class, () -> {
+			petTypeFormatter.parse(inputText, Locale.ENGLISH);
+		});
 
-        // Assert
-        assertTrue(exception.getMessage().contains("type not found: " + inputText));
-    }
+		// Assert
+		assertTrue(exception.getMessage().contains("type not found: " + inputText));
+	}
 
-    @Test
-    public void testParse_EmptyStringInput() {
-        // Arrange
-        String inputText = "";
-        when(owners.findPetTypes()).thenReturn(new ArrayList<>());
+	@Test
+	public void testParse_EmptyStringInput() {
+		// Arrange
+		String inputText = "";
+		when(owners.findPetTypes()).thenReturn(new ArrayList<>());
 
-        // Act & Assert
-        ParseException exception = assertThrows(ParseException.class, () -> {
-            petTypeFormatter.parse(inputText, Locale.ENGLISH);
-        });
+		// Act & Assert
+		ParseException exception = assertThrows(ParseException.class, () -> {
+			petTypeFormatter.parse(inputText, Locale.ENGLISH);
+		});
 
-        // Assert
-        assertTrue(exception.getMessage().contains("type not found: " + inputText));
-    }
+		// Assert
+		assertTrue(exception.getMessage().contains("type not found: " + inputText));
+	}
 
-    @Test
-    public void testParse_NullInput() {
-        // Arrange
-        String inputText = null;
-        when(owners.findPetTypes()).thenReturn(new ArrayList<>());
+	@Test
+	public void testParse_NullInput() {
+		// Arrange
+		String inputText = null;
+		when(owners.findPetTypes()).thenReturn(new ArrayList<>());
 
-        // Act & Assert
-        assertThrows(NullPointerException.class, () -> {
-            petTypeFormatter.parse(inputText, Locale.ENGLISH);
-        });
-    }
+		// Act & Assert
+		assertThrows(NullPointerException.class, () -> {
+			petTypeFormatter.parse(inputText, Locale.ENGLISH);
+		});
+	}
 
-    @Test
-    public void testParse_WhitespaceInput() {
-        // Arrange
-        String inputText = " ";
-        when(owners.findPetTypes()).thenReturn(new ArrayList<>());
+	@Test
+	public void testParse_WhitespaceInput() {
+		// Arrange
+		String inputText = " ";
+		when(owners.findPetTypes()).thenReturn(new ArrayList<>());
 
-        // Act & Assert
-        ParseException exception = assertThrows(ParseException.class, () -> {
-            petTypeFormatter.parse(inputText, Locale.ENGLISH);
-        });
+		// Act & Assert
+		ParseException exception = assertThrows(ParseException.class, () -> {
+			petTypeFormatter.parse(inputText, Locale.ENGLISH);
+		});
 
-        // Assert
-        assertTrue(exception.getMessage().contains("type not found: " + inputText.trim()));
-    }
+		// Assert
+		assertTrue(exception.getMessage().contains("type not found: " + inputText.trim()));
+	}
 
-    // TODO: Additional test cases can be implemented here, following the scenarios provided.
+	// TODO: Additional test cases can be implemented here, following the scenarios
+	// provided.
+
 }

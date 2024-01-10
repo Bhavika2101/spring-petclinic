@@ -54,82 +54,85 @@ import static org.mockito.BDDMockito.given;
 
 class PetTypeFormatter_PetTypeFormatter_d71c071163_Test {
 
-    @Mock
-    private OwnerRepository owners;
-    
-    @Mock
-    private MessageSource messages;
+	@Mock
+	private OwnerRepository owners;
 
-    private PetTypeFormatter formatter;
+	@Mock
+	private MessageSource messages;
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-        formatter = new PetTypeFormatter(owners);
-    }
+	private PetTypeFormatter formatter;
 
-    @Test
-    @DisplayName("Test parse method with valid pet type")
-    void testParseMethodWithValidPetType() {
-        // Given
-        String petTypeName = "Dog";
-        PetType petType = new PetType();
-        petType.setName(petTypeName);
-        List<PetType> petTypes = new ArrayList<>();
-        petTypes.add(petType);
-        given(owners.findPetTypes()).willReturn(petTypes);
+	@BeforeEach
+	void setUp() {
+		MockitoAnnotations.openMocks(this);
+		formatter = new PetTypeFormatter(owners);
+	}
 
-        try {
-            // When
-            PetType parsedPetType = formatter.parse(petTypeName, Locale.getDefault());
+	@Test
+	@DisplayName("Test parse method with valid pet type")
+	void testParseMethodWithValidPetType() {
+		// Given
+		String petTypeName = "Dog";
+		PetType petType = new PetType();
+		petType.setName(petTypeName);
+		List<PetType> petTypes = new ArrayList<>();
+		petTypes.add(petType);
+		given(owners.findPetTypes()).willReturn(petTypes);
 
-            // Then
-            assertNotNull(parsedPetType);
-            assertEquals(petTypeName, parsedPetType.getName());
-        } catch (ParseException e) {
-            fail("ParseException should not be thrown");
-        }
-    }
+		try {
+			// When
+			PetType parsedPetType = formatter.parse(petTypeName, Locale.getDefault());
 
-    @Test
-    @DisplayName("Test parse method with invalid pet type")
-    void testParseMethodWithInvalidPetType() {
-        // Given
-        String petTypeName = "Unknown";
-        List<PetType> petTypes = new ArrayList<>();
-        given(owners.findPetTypes()).willReturn(petTypes);
+			// Then
+			assertNotNull(parsedPetType);
+			assertEquals(petTypeName, parsedPetType.getName());
+		}
+		catch (ParseException e) {
+			fail("ParseException should not be thrown");
+		}
+	}
 
-        // When
-        ParseException thrownException = assertThrows(ParseException.class, () -> {
-            formatter.parse(petTypeName, Locale.getDefault());
-        });
+	@Test
+	@DisplayName("Test parse method with invalid pet type")
+	void testParseMethodWithInvalidPetType() {
+		// Given
+		String petTypeName = "Unknown";
+		List<PetType> petTypes = new ArrayList<>();
+		given(owners.findPetTypes()).willReturn(petTypes);
 
-        // Then
-        assertNotNull(thrownException);
-        assertEquals("type not found: " + petTypeName, thrownException.getMessage());
-    }
+		// When
+		ParseException thrownException = assertThrows(ParseException.class, () -> {
+			formatter.parse(petTypeName, Locale.getDefault());
+		});
 
-    @Test
-    @DisplayName("Test print method with valid pet type")
-    void testPrintMethodWithValidPetType() {
-        // Given
-        PetType petType = new PetType();
-        petType.setName("Cat");
+		// Then
+		assertNotNull(thrownException);
+		assertEquals("type not found: " + petTypeName, thrownException.getMessage());
+	}
 
-        // When
-        String printedPetType = formatter.print(petType, Locale.getDefault());
+	@Test
+	@DisplayName("Test print method with valid pet type")
+	void testPrintMethodWithValidPetType() {
+		// Given
+		PetType petType = new PetType();
+		petType.setName("Cat");
 
-        // Then
-        assertEquals("Cat", printedPetType);
-    }
+		// When
+		String printedPetType = formatter.print(petType, Locale.getDefault());
 
-    @Test
-    @DisplayName("Test print method with null pet type")
-    void testPrintMethodWithNullPetType() {
-        // TODO: If the behavior for this case is not defined yet, decide how to handle null input
-        // When & Then
-        assertThrows(NullPointerException.class, () -> {
-            formatter.print(null, Locale.getDefault());
-        });
-    }
+		// Then
+		assertEquals("Cat", printedPetType);
+	}
+
+	@Test
+	@DisplayName("Test print method with null pet type")
+	void testPrintMethodWithNullPetType() {
+		// TODO: If the behavior for this case is not defined yet, decide how to handle
+		// null input
+		// When & Then
+		assertThrows(NullPointerException.class, () -> {
+			formatter.print(null, Locale.getDefault());
+		});
+	}
+
 }

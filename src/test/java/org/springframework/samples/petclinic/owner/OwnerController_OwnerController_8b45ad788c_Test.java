@@ -62,32 +62,33 @@ import org.springframework.ui.Model;
 
 class OwnerController_OwnerController_8b45ad788c_Test {
 
-    private OwnerRepository owners;
-    private OwnerController ownerController;
+	private OwnerRepository owners;
 
-    @BeforeEach
-    void setup() {
-        owners = mock(OwnerRepository.class);
-        ownerController = new OwnerController(owners);
-    }
+	private OwnerController ownerController;
 
-    @Test
-    void testOwnerControllerConstructor() {
-        Owner testOwner = new Owner();
-        testOwner.setAddress("123 Test Street");
-        testOwner.setCity("Testville");
-        testOwner.setTelephone("1234567890");
+	@BeforeEach
+	void setup() {
+		owners = mock(OwnerRepository.class);
+		ownerController = new OwnerController(owners);
+	}
 
-        when(owners.findById(1)).thenReturn(testOwner);
+	@Test
+	void testOwnerControllerConstructor() {
+		Owner testOwner = new Owner();
+		testOwner.setAddress("123 Test Street");
+		testOwner.setCity("Testville");
+		testOwner.setTelephone("1234567890");
 
-        Owner resultOwner = ownerController.findOwner(1);
+		when(owners.findById(1)).thenReturn(testOwner);
 
-        assertEquals(testOwner.getAddress(), resultOwner.getAddress());
-        assertEquals(testOwner.getCity(), resultOwner.getCity());
-        assertEquals(testOwner.getTelephone(), resultOwner.getTelephone());
-    }
+		Owner resultOwner = ownerController.findOwner(1);
 
-    @Test
+		assertEquals(testOwner.getAddress(), resultOwner.getAddress());
+		assertEquals(testOwner.getCity(), resultOwner.getCity());
+		assertEquals(testOwner.getTelephone(), resultOwner.getTelephone());
+	}
+
+	@Test
     void testOwnerControllerConstructor_NullOwner() {
         when(owners.findById(null)).thenReturn(new Owner());
 
@@ -95,4 +96,5 @@ class OwnerController_OwnerController_8b45ad788c_Test {
 
         assertEquals(new Owner(), resultOwner);
     }
+
 }

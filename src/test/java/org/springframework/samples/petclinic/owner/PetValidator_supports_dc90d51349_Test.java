@@ -33,49 +33,56 @@ import org.junit.jupiter.api.Test;
 
 public class PetValidator_supports_dc90d51349_Test {
 
-    @Test
-    public void testSupports_withPetClass_shouldReturnTrue() {
-        PetValidator validator = new PetValidator();
-        assertTrue(validator.supports(Pet.class));
-    }
+	@Test
+	public void testSupports_withPetClass_shouldReturnTrue() {
+		PetValidator validator = new PetValidator();
+		assertTrue(validator.supports(Pet.class));
+	}
 
-    @Test
-    public void testSupports_withSubclassOfPet_shouldReturnTrue() {
-        class Dog extends Pet {}
-        PetValidator validator = new PetValidator();
-        assertTrue(validator.supports(Dog.class));
-    }
+	@Test
+	public void testSupports_withSubclassOfPet_shouldReturnTrue() {
+		class Dog extends Pet {
 
-    @Test
-    public void testSupports_withUnrelatedClass_shouldReturnFalse() {
-        PetValidator validator = new PetValidator();
-        assertFalse(validator.supports(String.class));
-    }
+		}
+		PetValidator validator = new PetValidator();
+		assertTrue(validator.supports(Dog.class));
+	}
 
-    @Test
-    public void testSupports_withNullClass_shouldReturnFalse() {
-        PetValidator validator = new PetValidator();
-        assertFalse(validator.supports(null));
-    }
+	@Test
+	public void testSupports_withUnrelatedClass_shouldReturnFalse() {
+		PetValidator validator = new PetValidator();
+		assertFalse(validator.supports(String.class));
+	}
 
-    @Test
-    public void testSupports_withInterfacePetImplements_shouldReturnFalse() {
-        interface AnimalInterface {}
-        PetValidator validator = new PetValidator();
-        assertFalse(validator.supports(AnimalInterface.class));
-    }
+	@Test
+	public void testSupports_withNullClass_shouldReturnFalse() {
+		PetValidator validator = new PetValidator();
+		assertFalse(validator.supports(null));
+	}
 
-    @Test
-    public void testSupports_withProxyClassOfPet_shouldReturnTrue() {
-        // TODO: Create a proxy or dynamic subclass of Pet at runtime before passing to supports method
-        PetValidator validator = new PetValidator();
-        // assertTrue(validator.supports(proxyClass));
-    }
+	@Test
+	public void testSupports_withInterfacePetImplements_shouldReturnFalse() {
+		interface AnimalInterface {
 
-    @Test
-    public void testSupports_withAnonymousSubclassOfPet_shouldReturnTrue() {
-        PetValidator validator = new PetValidator();
-        Pet anonymousPet = new Pet() {};
-        assertTrue(validator.supports(anonymousPet.getClass()));
-    }
+		}
+		PetValidator validator = new PetValidator();
+		assertFalse(validator.supports(AnimalInterface.class));
+	}
+
+	@Test
+	public void testSupports_withProxyClassOfPet_shouldReturnTrue() {
+		// TODO: Create a proxy or dynamic subclass of Pet at runtime before passing to
+		// supports method
+		PetValidator validator = new PetValidator();
+		// assertTrue(validator.supports(proxyClass));
+	}
+
+	@Test
+	public void testSupports_withAnonymousSubclassOfPet_shouldReturnTrue() {
+		PetValidator validator = new PetValidator();
+		Pet anonymousPet = new Pet() {
+		};
+		assertTrue(validator.supports(anonymousPet.getClass()));
+	}
+
 }

@@ -74,21 +74,21 @@ import java.util.List;
 
 public class OwnerController_addPaginationModel_996bca2e5f_Test {
 
-    @Mock
-    private Model mockModel;
+	@Mock
+	private Model mockModel;
 
-    @Mock
-    private Page<Owner> mockPage;
+	@Mock
+	private Page<Owner> mockPage;
 
-    private OwnerController ownerController;
+	private OwnerController ownerController;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        ownerController = new OwnerController(mock(OwnerRepository.class));
-    }
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+		ownerController = new OwnerController(mock(OwnerRepository.class));
+	}
 
-    @Test
+	@Test
     public void testStandardPaginationScenario() {
         when(mockPage.getTotalPages()).thenReturn(3);
         when(mockPage.getTotalElements()).thenReturn(15L);
@@ -99,7 +99,7 @@ public class OwnerController_addPaginationModel_996bca2e5f_Test {
         assertEquals("owners/ownersList", viewName);
     }
 
-    @Test
+	@Test
     public void testFirstPageScenario() {
         when(mockPage.getTotalPages()).thenReturn(3);
         when(mockPage.getTotalElements()).thenReturn(15L);
@@ -110,7 +110,7 @@ public class OwnerController_addPaginationModel_996bca2e5f_Test {
         assertEquals("owners/ownersList", viewName);
     }
 
-    @Test
+	@Test
     public void testLastPageScenario() {
         when(mockPage.getTotalPages()).thenReturn(3);
         when(mockPage.getTotalElements()).thenReturn(15L);
@@ -121,7 +121,7 @@ public class OwnerController_addPaginationModel_996bca2e5f_Test {
         assertEquals("owners/ownersList", viewName);
     }
 
-    @Test
+	@Test
     public void testSinglePageScenario() {
         when(mockPage.getTotalPages()).thenReturn(1);
         when(mockPage.getTotalElements()).thenReturn(5L);
@@ -132,7 +132,7 @@ public class OwnerController_addPaginationModel_996bca2e5f_Test {
         assertEquals("owners/ownersList", viewName);
     }
 
-    @Test
+	@Test
     public void testEmptyListScenario() {
         when(mockPage.getTotalPages()).thenReturn(0);
         when(mockPage.getTotalElements()).thenReturn(0L);
@@ -143,7 +143,7 @@ public class OwnerController_addPaginationModel_996bca2e5f_Test {
         assertEquals("owners/ownersList", viewName);
     }
 
-    @Test
+	@Test
     public void testModelIntegrityScenario() {
         when(mockPage.getTotalPages()).thenReturn(3);
         when(mockPage.getTotalElements()).thenReturn(15L);
@@ -157,7 +157,7 @@ public class OwnerController_addPaginationModel_996bca2e5f_Test {
         // Additional checks for model integrity can be added here
     }
 
-    @Test
+	@Test
     public void testPageSizeConsistencyScenario() {
         when(mockPage.getTotalPages()).thenReturn(3);
         when(mockPage.getTotalElements()).thenReturn(15L);
@@ -173,11 +173,12 @@ public class OwnerController_addPaginationModel_996bca2e5f_Test {
         // Additional checks for page size consistency can be added here
     }
 
-    @Test
-    public void testNullParametersScenario() {
-        // Assuming the method should handle null parameters by returning a default view
-        String viewName = ownerController.addPaginationModel(1, null, null);
+	@Test
+	public void testNullParametersScenario() {
+		// Assuming the method should handle null parameters by returning a default view
+		String viewName = ownerController.addPaginationModel(1, null, null);
 
-        assertEquals("owners/ownersList", viewName);
-    }
+		assertEquals("owners/ownersList", viewName);
+	}
+
 }

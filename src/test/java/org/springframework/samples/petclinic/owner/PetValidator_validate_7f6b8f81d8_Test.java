@@ -72,122 +72,124 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PetValidator_validate_7f6b8f81d8_Test {
 
-    private PetValidator petValidator;
-    private Pet pet;
+	private PetValidator petValidator;
 
-    @Mock
-    private Errors errors;
+	private Pet pet;
 
-    private static final String REQUIRED = "required";
+	@Mock
+	private Errors errors;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-        petValidator = new PetValidator();
-        pet = new Pet();
-    }
+	private static final String REQUIRED = "required";
 
-    @Test
-    public void testValidPetInformation() {
-        pet.setName("Buddy");
-        pet.setBirthDate(LocalDate.of(2018, 4, 4));
-        pet.setType(new PetType());
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+		petValidator = new PetValidator();
+		pet = new Pet();
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testValidPetInformation() {
+		pet.setName("Buddy");
+		pet.setBirthDate(LocalDate.of(2018, 4, 4));
+		pet.setType(new PetType());
 
-        assertEquals(0, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testMissingPetName() {
-        pet.setName("");
-        pet.setBirthDate(LocalDate.of(2018, 4, 4));
-        pet.setType(new PetType());
+		assertEquals(0, ((BindException) errors).getErrorCount());
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testMissingPetName() {
+		pet.setName("");
+		pet.setBirthDate(LocalDate.of(2018, 4, 4));
+		pet.setType(new PetType());
 
-        assertEquals(1, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testMissingPetTypeForNewPet() {
-        pet.setName("Buddy");
-        pet.setBirthDate(LocalDate.of(2018, 4, 4));
-        pet.setType(null); // TODO: Set isNew() to true if such a method exists.
+		assertEquals(1, ((BindException) errors).getErrorCount());
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testMissingPetTypeForNewPet() {
+		pet.setName("Buddy");
+		pet.setBirthDate(LocalDate.of(2018, 4, 4));
+		pet.setType(null); // TODO: Set isNew() to true if such a method exists.
 
-        assertEquals(1, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testExistingPetWithMissingType() {
-        pet.setName("Buddy");
-        pet.setBirthDate(LocalDate.of(2018, 4, 4));
-        pet.setType(null); // TODO: Set isNew() to false if such a method exists.
+		assertEquals(1, ((BindException) errors).getErrorCount());
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testExistingPetWithMissingType() {
+		pet.setName("Buddy");
+		pet.setBirthDate(LocalDate.of(2018, 4, 4));
+		pet.setType(null); // TODO: Set isNew() to false if such a method exists.
 
-        assertEquals(0, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testMissingBirthDate() {
-        pet.setName("Buddy");
-        pet.setBirthDate(null);
-        pet.setType(new PetType());
+		assertEquals(0, ((BindException) errors).getErrorCount());
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testMissingBirthDate() {
+		pet.setName("Buddy");
+		pet.setBirthDate(null);
+		pet.setType(new PetType());
 
-        assertEquals(1, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testAllInformationMissing() {
-        pet.setName(null);
-        pet.setBirthDate(null);
-        pet.setType(null); // TODO: Set isNew() to true if such a method exists.
+		assertEquals(1, ((BindException) errors).getErrorCount());
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testAllInformationMissing() {
+		pet.setName(null);
+		pet.setBirthDate(null);
+		pet.setType(null); // TODO: Set isNew() to true if such a method exists.
 
-        assertEquals(3, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testBlankPetName() {
-        pet.setName(" ");
-        pet.setBirthDate(LocalDate.of(2018, 4, 4));
-        pet.setType(new PetType());
+		assertEquals(3, ((BindException) errors).getErrorCount());
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testBlankPetName() {
+		pet.setName(" ");
+		pet.setBirthDate(LocalDate.of(2018, 4, 4));
+		pet.setType(new PetType());
 
-        assertEquals(1, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testPetTypeProvidedForNewPet() {
-        pet.setName("Buddy");
-        pet.setBirthDate(LocalDate.of(2018, 4, 4));
-        pet.setType(new PetType()); // TODO: Set isNew() to true if such a method exists.
+		assertEquals(1, ((BindException) errors).getErrorCount());
+	}
 
-        petValidator.validate(pet, errors);
+	@Test
+	public void testPetTypeProvidedForNewPet() {
+		pet.setName("Buddy");
+		pet.setBirthDate(LocalDate.of(2018, 4, 4));
+		pet.setType(new PetType()); // TODO: Set isNew() to true if such a method exists.
 
-        assertEquals(0, ((BindException) errors).getErrorCount());
-    }
+		petValidator.validate(pet, errors);
 
-    @Test
-    public void testNonPetObjectValidation() {
-        Object nonPet = new Object();
+		assertEquals(0, ((BindException) errors).getErrorCount());
+	}
 
-        assertThrows(ClassCastException.class, () -> {
-            petValidator.validate(nonPet, errors);
-        });
-    }
+	@Test
+	public void testNonPetObjectValidation() {
+		Object nonPet = new Object();
 
-    @Test
-    public void testNullObjectValidation() {
-        assertThrows(NullPointerException.class, () -> {
-            petValidator.validate(null, errors);
-        });
-    }
+		assertThrows(ClassCastException.class, () -> {
+			petValidator.validate(nonPet, errors);
+		});
+	}
+
+	@Test
+	public void testNullObjectValidation() {
+		assertThrows(NullPointerException.class, () -> {
+			petValidator.validate(null, errors);
+		});
+	}
+
 }
