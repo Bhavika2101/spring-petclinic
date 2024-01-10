@@ -51,6 +51,7 @@ package org.springframework.samples.petclinic.owner;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.springframework.web.bind.WebDataBinder;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,60 +59,70 @@ import org.springframework.validation.DataBinder;
 
 public class PetController_initOwnerBinder_c48260f88f_Test {
 
-    private PetController petController;
-    private WebDataBinder dataBinder;
+	private PetController petController;
 
-    @BeforeEach
-    public void setup() {
-        petController = new PetController(new OwnerRepository());
-        dataBinder = new WebDataBinder(null);
-    }
+	private WebDataBinder dataBinder;
 
-    @Test
-    public void testDisallowedFields() {
-        petController.initOwnerBinder(dataBinder);
-        String[] disallowedFields = dataBinder.getDisallowedFields();
-        assertArrayEquals(new String[]{"id"}, disallowedFields, "Field 'id' should be disallowed");
-    }
+	@BeforeEach
+	public void setup() {
+		petController = new PetController(new OwnerRepository());
+		dataBinder = new WebDataBinder(null);
+	}
 
-    @Test
-    public void testAllowedFields() {
-        dataBinder.setAllowedFields("*");
-        petController.initOwnerBinder(dataBinder);
-        String[] allowedFields = dataBinder.getAllowedFields();
-        assertArrayEquals(new String[]{"*"}, allowedFields, "All fields except 'id' should be allowed");
-    }
+	@Test
+	public void testDisallowedFields() {
+		petController.initOwnerBinder(dataBinder);
+		String[] disallowedFields = dataBinder.getDisallowedFields();
+		assertArrayEquals(new String[] { "id" }, disallowedFields, "Field 'id' should be disallowed");
+	}
 
-    @Test
-    public void testNoSideEffects() {
-        dataBinder.registerCustomEditor(String.class, "name", new CustomStringEditor());
-        dataBinder.addValidators(new CustomValidator());
-        petController.initOwnerBinder(dataBinder);
-        assertArrayEquals(new String[]{"id"}, dataBinder.getDisallowedFields(), "Disallowed fields should not affect other properties");
-    }
+	@Test
+	public void testAllowedFields() {
+		dataBinder.setAllowedFields("*");
+		petController.initOwnerBinder(dataBinder);
+		String[] allowedFields = dataBinder.getAllowedFields();
+		assertArrayEquals(new String[] { "*" }, allowedFields, "All fields except 'id' should be allowed");
+	}
 
-    @Test
-    public void testMultipleInvocations() {
-        petController.initOwnerBinder(dataBinder);
-        String[] disallowedFieldsFirstInvocation = dataBinder.getDisallowedFields();
-        petController.initOwnerBinder(dataBinder);
-        String[] disallowedFieldsSecondInvocation = dataBinder.getDisallowedFields();
-        assertArrayEquals(disallowedFieldsFirstInvocation, disallowedFieldsSecondInvocation, "Multiple invocations should not change the outcome");
-    }
+	@Test
+	public void testNoSideEffects() {
+		dataBinder.registerCustomEditor(String.class, "name", new CustomStringEditor());
+		dataBinder.addValidators(new CustomValidator());
+		petController.initOwnerBinder(dataBinder);
+		assertArrayEquals(new String[] { "id" }, dataBinder.getDisallowedFields(),
+				"Disallowed fields should not affect other properties");
+	}
 
-    @Test
-    public void testNullBinder() {
-        assertThrows(NullPointerException.class, () -> petController.initOwnerBinder(null), "Passing null WebDataBinder should throw NullPointerException");
-    }
+	@Test
+	public void testMultipleInvocations() {
+		petController.initOwnerBinder(dataBinder);
+		String[] disallowedFieldsFirstInvocation = dataBinder.getDisallowedFields();
+		petController.initOwnerBinder(dataBinder);
+		String[] disallowedFieldsSecondInvocation = dataBinder.getDisallowedFields();
+		assertArrayEquals(disallowedFieldsFirstInvocation, disallowedFieldsSecondInvocation,
+				"Multiple invocations should not change the outcome");
+	}
 
-    // TODO: Implement testReflectionOfChanges and testImmutability for complete test suite.
+	@Test
+	public void testNullBinder() {
+		assertThrows(NullPointerException.class, () -> petController.initOwnerBinder(null),
+				"Passing null WebDataBinder should throw NullPointerException");
+	}
 
-    // Custom classes used in tests
-    private static class CustomStringEditor {
-        // Custom editor for string fields
-    }
+	// TODO: Implement testReflectionOfChanges and testImmutability for complete test
+	// suite.
 
-    private static class CustomValidator {
-        // Custom validator
-    }
+	// Custom classes used in tests
+	private static class CustomStringEditor {
+
+		// Custom editor for string fields
+
+	}
+
+	private static class CustomValidator {
+
+		// Custom validator
+
+	}
+
 }
