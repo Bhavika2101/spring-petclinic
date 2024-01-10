@@ -53,249 +53,247 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PetController_processUpdateForm_8b32776c46_Test {
 
-    @Mock
-    private OwnerRepository owners;
+	@Mock
+	private OwnerRepository owners;
 
-    @Mock
-    private BindingResult result;
+	@Mock
+	private BindingResult result;
 
-    @Mock
-    private ModelMap model;
+	@Mock
+	private ModelMap model;
 
-    @InjectMocks
-    private PetController petController;
+	@InjectMocks
+	private PetController petController;
 
-    private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
+	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
+	@BeforeEach
+	public void setup() {
+		MockitoAnnotations.openMocks(this);
+	}
 
-    @Test
-    public void testPetNameNotProvided() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
+	@Test
+	public void testPetNameNotProvided() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
 
-        when(result.hasErrors()).thenReturn(false);
-        String view = petController.processUpdateForm(pet, result, owner, model);
+		when(result.hasErrors()).thenReturn(false);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        verify(result).rejectValue("name", "duplicate", "already exists");
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-    }
+		verify(result).rejectValue("name", "duplicate", "already exists");
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+	}
 
-    @Test
-    public void testUniquePetNameProvided() {
-        Pet pet = new Pet();
-        pet.setName("Buddy");
-        pet.setId(1);
-        Owner owner = new Owner();
-        List<Pet> pets = new ArrayList<>();
-        pets.add(pet);
-        owner.setPetsInternal(pets);
+	@Test
+	public void testUniquePetNameProvided() {
+		Pet pet = new Pet();
+		pet.setName("Buddy");
+		pet.setId(1);
+		Owner owner = new Owner();
+		List<Pet> pets = new ArrayList<>();
+		owner.addPet(pet);
+		this.owners.save(owner);
+		when(result.hasErrors()).thenReturn(false);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
-        when(owners.save(any(Owner.class))).thenReturn(null);
+		verify(owners, times(1)).save(owner);
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testDuplicatePetNameProvided() {
+		Pet pet = new Pet();
+		pet.setName("Buddy");
+		pet.setId(2);
+		Owner owner = new Owner();
+		Pet existingPet = new Pet();
+		existingPet.setName("Buddy");
+		existingPet.setId(1);
+		List<Pet> pets = new ArrayList<>();
+		owner.addPet(pet);
+		this.owners.save(owner);
 
-        verify(owners, times(1)).save(owner);
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(false);
 
-    @Test
-    public void testDuplicatePetNameProvided() {
-        Pet pet = new Pet();
-        pet.setName("Buddy");
-        pet.setId(2);
-        Owner owner = new Owner();
-        Pet existingPet = new Pet();
-        existingPet.setName("Buddy");
-        existingPet.setId(1);
-        List<Pet> pets = new ArrayList<>();
-        pets.add(existingPet);
-        owner.setPetsInternal(pets);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
+		verify(result).rejectValue("name", "duplicate", "already exists");
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testBirthDateNotProvided() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
 
-        verify(result).rejectValue("name", "duplicate", "already exists");
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-    @Test
-    public void testBirthDateNotProvided() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
+		verify(result, never()).rejectValue(eq("birthDate"), anyString(), anyString());
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        when(result.hasErrors()).thenReturn(false);
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testBirthDateInThePast() {
+		Pet pet = new Pet();
+		pet.setBirthDate(LocalDate.now().minusDays(1));
+		Owner owner = new Owner();
 
-        verify(result, never()).rejectValue(eq("birthDate"), anyString(), anyString());
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-    @Test
-    public void testBirthDateInThePast() {
-        Pet pet = new Pet();
-        pet.setBirthDate(LocalDate.now().minusDays(1));
-        Owner owner = new Owner();
+		verify(result, never()).rejectValue(eq("birthDate"), anyString(), anyString());
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        when(result.hasErrors()).thenReturn(false);
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testBirthDateIsToday() {
+		Pet pet = new Pet();
+		pet.setBirthDate(LocalDate.now());
+		Owner owner = new Owner();
 
-        verify(result, never()).rejectValue(eq("birthDate"), anyString(), anyString());
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-    @Test
-    public void testBirthDateIsToday() {
-        Pet pet = new Pet();
-        pet.setBirthDate(LocalDate.now());
-        Owner owner = new Owner();
+		verify(result, never()).rejectValue(eq("birthDate"), anyString(), anyString());
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        when(result.hasErrors()).thenReturn(false);
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testBirthDateInTheFuture() {
+		Pet pet = new Pet();
+		pet.setBirthDate(LocalDate.now().plusDays(1));
+		Owner owner = new Owner();
 
-        verify(result, never()).rejectValue(eq("birthDate"), anyString(), anyString());
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-    @Test
-    public void testBirthDateInTheFuture() {
-        Pet pet = new Pet();
-        pet.setBirthDate(LocalDate.now().plusDays(1));
-        Owner owner = new Owner();
+		verify(result).rejectValue("birthDate", "typeMismatch.birthDate");
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+	}
 
-        when(result.hasErrors()).thenReturn(false);
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testNoBindingErrors() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
 
-        verify(result).rejectValue("birthDate", "typeMismatch.birthDate");
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		// when(owners.save(any(Owner.class))).thenReturn(null);
 
-    @Test
-    public void testNoBindingErrors() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
-        when(owners.save(any(Owner.class))).thenReturn(null);
+		verify(owner, times(1)).addPet(pet);
+		verify(owners, times(1)).save(owner);
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testBindingErrorsPresent() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
 
-        verify(owner, times(1)).addPet(pet);
-        verify(owners, times(1)).save(owner);
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(true);
 
-    @Test
-    public void testBindingErrorsPresent() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(true);
+		verify(owner, never()).addPet(pet);
+		verify(owners, never()).save(owner);
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testPetSuccessfullyAddedToOwner() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
 
-        verify(owner, never()).addPet(pet);
-        verify(owners, never()).save(owner);
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		// when(owners.save(any(Owner.class))).thenReturn(null);
 
-    @Test
-    public void testPetSuccessfullyAddedToOwner() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
-        when(owners.save(any(Owner.class))).thenReturn(null);
+		verify(owner, times(1)).addPet(pet);
+		verify(owners, times(1)).save(owner);
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testModelPopulatedOnErrors() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
 
-        verify(owner, times(1)).addPet(pet);
-        verify(owners, times(1)).save(owner);
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(true);
 
-    @Test
-    public void testModelPopulatedOnErrors() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(true);
+		verify(model, times(1)).put("pet", pet);
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testOwnerSaveCalledWithoutErrors() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
 
-        verify(model, times(1)).put("pet", pet);
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		// when(owners.save(any(Owner.class))).thenReturn(null);
 
-    @Test
-    public void testOwnerSaveCalledWithoutErrors() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
+		petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
-        when(owners.save(any(Owner.class))).thenReturn(null);
+		verify(owners, times(1)).save(owner);
+	}
 
-        petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testCorrectRedirectOnSuccess() {
+		Pet pet = new Pet();
+		Owner owner = new Owner();
+		owner.setId(1);
 
-        verify(owners, times(1)).save(owner);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		// when(owners.save(any(Owner.class))).thenReturn(null);
 
-    @Test
-    public void testCorrectRedirectOnSuccess() {
-        Pet pet = new Pet();
-        Owner owner = new Owner();
-        owner.setId(1);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
-        when(owners.save(any(Owner.class))).thenReturn(null);
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testPetNameWithWhitespace() {
+		Pet pet = new Pet();
+		pet.setName(" Buddy ");
+		pet.setId(1);
+		Owner owner = new Owner();
+		List<Pet> pets = new ArrayList<>();
+		owner.addPet(pet);
+		this.owners.save(owner);
 
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(false);
+		// when(owners.save(any(Owner.class))).thenReturn(null);
 
-    @Test
-    public void testPetNameWithWhitespace() {
-        Pet pet = new Pet();
-        pet.setName(" Buddy ");
-        pet.setId(1);
-        Owner owner = new Owner();
-        List<Pet> pets = new ArrayList<>();
-        pets.add(pet);
-        owner.setPetsInternal(pets);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
-        when(owners.save(any(Owner.class))).thenReturn(null);
+		verify(owners, times(1)).save(owner);
+		assertEquals("redirect:/owners/{ownerId}", view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
+	@Test
+	public void testPetNameCaseInsensitive() {
+		Pet pet = new Pet();
+		pet.setName("buddy");
+		pet.setId(2);
+		Owner owner = new Owner();
+		Pet existingPet = new Pet();
+		existingPet.setName("Buddy");
+		existingPet.setId(1);
+		List<Pet> pets = new ArrayList<>();
+		owner.addPet(pet);
+		this.owners.save(owner);
 
-        verify(owners, times(1)).save(owner);
-        assertEquals("redirect:/owners/{ownerId}", view);
-    }
+		when(result.hasErrors()).thenReturn(false);
 
-    @Test
-    public void testPetNameCaseInsensitive() {
-        Pet pet = new Pet();
-        pet.setName("buddy");
-        pet.setId(2);
-        Owner owner = new Owner();
-        Pet existingPet = new Pet();
-        existingPet.setName("Buddy");
-        existingPet.setId(1);
-        List<Pet> pets = new ArrayList<>();
-        pets.add(existingPet);
-        owner.setPetsInternal(pets);
+		String view = petController.processUpdateForm(pet, result, owner, model);
 
-        when(result.hasErrors()).thenReturn(false);
+		verify(result).rejectValue("name", "duplicate", "already exists");
+		assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
+	}
 
-        String view = petController.processUpdateForm(pet, result, owner, model);
-
-        verify(result).rejectValue("name", "duplicate", "already exists");
-        assertEquals(VIEWS_PETS_CREATE_OR_UPDATE_FORM, view);
-    }
 }
