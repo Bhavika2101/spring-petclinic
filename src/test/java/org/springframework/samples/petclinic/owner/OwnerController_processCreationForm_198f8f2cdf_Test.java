@@ -54,44 +54,46 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OwnerController_processCreationForm_198f8f2cdf_Test {
 
-    private OwnerController ownerController;
+	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
-    @Mock
-    private OwnerRepository owners;
+	private OwnerController ownerController;
 
-    @Mock
-    private BindingResult bindingResult;
+	@Mock
+	private OwnerRepository owners;
 
-    @BeforeEach
-    void setup() {
-        MockitoAnnotations.openMocks(this);
-        ownerController = new OwnerController(owners);
-    }
+	@Mock
+	private BindingResult bindingResult;
 
-    @Test
-    public void testProcessCreationFormSuccess() {
-        Owner owner = new Owner();
-        owner.setId(1);
-        when(bindingResult.hasErrors()).thenReturn(false);
+	@BeforeEach
+	void setup() {
+		MockitoAnnotations.openMocks(this);
+		ownerController = new OwnerController(owners);
+	}
 
-        String viewName = ownerController.processCreationForm(owner, bindingResult);
+	@Test
+	public void testProcessCreationFormSuccess() {
+		Owner owner = new Owner();
+		owner.setId(1);
+		when(bindingResult.hasErrors()).thenReturn(false);
 
-        verify(owners, times(1)).save(owner);
-        assertEquals("redirect:/owners/1", viewName);
-    }
+		String viewName = ownerController.processCreationForm(owner, bindingResult);
 
-    @Test
-    public void testProcessCreationFormHasErrors() {
-        Owner owner = new Owner();
-        when(bindingResult.hasErrors()).thenReturn(true);
+		verify(owners, times(1)).save(owner);
+		assertEquals("redirect:/owners/1", viewName);
+	}
 
-        String viewName = ownerController.processCreationForm(owner, bindingResult);
+	@Test
+	public void testProcessCreationFormHasErrors() {
+		Owner owner = new Owner();
+		when(bindingResult.hasErrors()).thenReturn(true);
 
-        verify(owners, never()).save(any(Owner.class));
-        assertEquals(OwnerController.VIEWS_OWNER_CREATE_OR_UPDATE_FORM, viewName);
-    }
+		String viewName = ownerController.processCreationForm(owner, bindingResult);
 
-    @Test
+		verify(owners, never()).save(any(Owner.class));
+		assertEquals(VIEWS_OWNER_CREATE_OR_UPDATE_FORM, viewName);
+	}
+
+	@Test
     public void testProcessCreationFormWithNullOwner() {
         when(bindingResult.hasErrors()).thenReturn(false);
 
@@ -101,16 +103,17 @@ class OwnerController_processCreationForm_198f8f2cdf_Test {
         assertEquals("Cannot invoke \"org.springframework.samples.petclinic.owner.Owner.getId()\" because \"owner\" is null", exception.getMessage());
     }
 
-    @Test
-    public void testProcessCreationFormWithBindingResultManipulation() {
-        Owner owner = new Owner();
-        owner.setId(1);
-        when(bindingResult.hasErrors()).thenReturn(true);
-        bindingResult.addError(new ObjectError("owner", "Forced error"));
+	@Test
+	public void testProcessCreationFormWithBindingResultManipulation() {
+		Owner owner = new Owner();
+		owner.setId(1);
+		when(bindingResult.hasErrors()).thenReturn(true);
+		bindingResult.addError(new ObjectError("owner", "Forced error"));
 
-        String viewName = ownerController.processCreationForm(owner, bindingResult);
+		String viewName = ownerController.processCreationForm(owner, bindingResult);
 
-        verify(owners, never()).save(owner);
-        assertEquals(OwnerController.VIEWS_OWNER_CREATE_OR_UPDATE_FORM, viewName);
-    }
+		verify(owners, never()).save(owner);
+		assertEquals(VIEWS_OWNER_CREATE_OR_UPDATE_FORM, viewName);
+	}
+
 }
