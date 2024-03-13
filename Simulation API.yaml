@@ -1,0 +1,1158 @@
+openapi: 3.0.0
+info:
+  version: "0.10"
+  title: Simulation API Specification of Hong Kong FPS, Malaysia DuitNow and Singapore PayNow
+  description: "Below simulation API is for testing environment only. For production environment, please use local banking applications to scan the generated QR code to complete payment."
+tags:
+- name: Payments
+  description: Contains resource collections for Payments.
+- name: Refunds
+  description: Contains resource collections for Refunds.
+servers:
+  - url: https://ws-api-platform-pprd.business.hsbc.com.hk:443/glcm-mobilecoll-sim-ea-merchantservices-proxy/v1
+    description: "" 
+paths:
+  /hk/payment/simulation:
+    post:
+      tags:
+        - Payments
+      summary: Hong Kong FPS Payment Simulation API
+      description: >
+        To simulate the process which the buyer confirms the payment with or
+        without scanning the QR Code.This is only available in Sandbox
+        Environment. 
+        
+        * <STRONG>NOTE</STRONG>: Only choose between either a Bill Payment or a Non-Bill Payment
+
+
+        * <em>Please be reminded a different BASE URL is used by Simulation APIs.
+
+      parameters:
+      - name: Content-Type
+        in: header
+        description: application/json
+        example: application/json
+        required: true
+        schema:
+          type: string
+      - name: message_encrypt
+        in: header
+        description: 'Put the header message_encrypt: false to indicate this API request
+          is without message encryption. This header is only applicable in Sandbox
+          environment'
+        example: false
+        required: true
+        schema:
+          type: boolean
+      - name: Authorization
+        in: header
+        description: 'Put the Authorization value here'
+        required: true      
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HKpaySimRequestModel"
+            examples:
+              'Hong Kong Bill Payment':
+                value:
+                    txnRef: 0002900F06457710500000001
+                    merId: H099289H4410000
+                    is_notification_encrypted: Y
+                    for_bill_payment:
+                      currency: HKD
+                      amount: 2500
+                      suppInfo: Supplementary Information
+              'Hong Kong Non-bill Payment':
+                value:
+                    txnRef: 0002900F06457710500000001
+                    merId: H099289H4410000
+                    is_notification_encrypted: Y
+                    for_nonbill_payment:
+                      currency: HKD
+                      amount: 2500
+                      suppInfo: Supplementary Information
+        required: true
+
+      responses:
+        "200":
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HKpaySimResponseModel"
+        "400":
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HKexceptionModel"
+        "403":
+          description: Authorization credentials are missing or invalid.
+        "404":
+          description: Empty resource/resource not found.
+        "500":
+          description: The request failed due to an internal error.
+      security:
+        - BasicAuth: []
+  /hk/refund/simulation:
+    post:
+      tags:
+        - Refunds
+      summary: Hong Kong FPS Refund Simulation API
+      description: >
+        This API aims to simulate the [Refund Request
+        API](#tag/Refund/paths/~1refund~1request/post) in Sandbox environment
+        while the testing data will not processed in the refund downstream
+        system.
+
+        * <strong>IMPORTANT NOTE</strong>:  Except the API endpoint, the API usage flow, business checking logic and message structure are identical to [Single API Refund Request API].
+
+        * <em>Please be reminded a different BASE URL is used by Simulation APIs.
+      parameters:
+        - name: Content-Type
+          in: header
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: message_encrypt
+          in: header
+          description: 'Put the header message_encrypt: false to indicate this API request
+          is without message encryption. This header is only applicable in Sandbox
+          environment'
+          example: false
+          required: true
+          schema:
+            type: boolean
+        - name: Authorization
+          in: header
+          description: 'Put the Authorization value here'
+          required: true      
+          schema:
+            type: string       
+      requestBody:
+        $ref: "#/components/requestBodies/HKrefundRqRequestModel"
+      responses:
+        "200":
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HKrefundRqResponseModel"
+        "400":
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HKexceptionModel"
+        "403":
+          description: Authorization credentials are missing or invalid.
+        "404":
+          description: Empty resource/resource not found.
+        "500":
+          description: The request failed due to an internal error.
+      security:
+        - BasicAuth: []
+  /sg/payment/simulation:
+    post:
+      tags:
+      - Payments
+      summary: Singapore PayNow Payment Simulation API
+      description: >
+        To simulate the process which the buyer confirms the payment with or
+        without scanning the QR Code.This is only available in Sandbox
+        Environment. 
+        
+        * <em>Please be reminded a different BASE URL is used by Simulation APIs.
+      parameters:
+      - name: Content-Type
+        in: header
+        description: application/json
+        example: application/json
+        required: true
+        schema:
+          type: string
+      - name: message_encrypt
+        in: header
+        description: 'Put the header message_encrypt: false to indicate this API request
+          is without message encryption. This header is only applicable in Sandbox
+          environment'
+        example: false
+        required: true
+        schema:
+          type: boolean
+      - name: Authorization
+        in: header
+        description: 'Put the Authorization value here'
+        required: true      
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SGpaySimRequestModel'
+        required: true
+      responses:
+        200:
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SGpaySimResponseModel'
+        400:
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SGexceptionModel'
+        403:
+          description: Authorization credentials are missing or invalid.
+          content: {}
+        404:
+          description: Empty resource/resource not found.
+          content: {}
+        500:
+          description: The request failed due to an internal error.
+          content: {}
+      security:
+      - BasicAuth: []
+      x-codegen-request-body-name: body        
+  /my/payment/simulation:
+    post:
+      tags:
+      - Payments
+      summary: Malaysia DuitNow Payment Simulation API
+      description: >
+        To simulate the process which the buyer confirms the payment with or
+        without scanning the QR Code.This is only available in Sandbox
+        Environment. 
+        
+        * <em>Please be reminded a different BASE URL is used by Simulation APIs.
+      parameters:
+      - name: Content-Type
+        in: header
+        description: application/json
+        example: application/json
+        required: true
+        schema:
+          type: string
+      - name: message_encrypt
+        in: header
+        description: 'Put the header message_encrypt: false to indicate this API request
+          is without message encryption. This header is only applicable in Sandbox
+          environment'
+        example: false
+        required: true
+        schema:
+          type: boolean
+      - name: Authorization
+        in: header
+        description: 'Put the Authorization value here'
+        required: true      
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MYpaySimReqtModel'
+        required: true
+      responses:
+        200:
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MYpaySimRespModel'
+      x-codegen-request-body-name: body
+components:
+  requestBodies:
+    HKrefundRqRequestModel:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/HKrefundRqRequestModel"
+      required: true
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    HKsimBillPaymentObj:
+      required:
+        - currency
+        - amount
+        - suppInfo
+      type: object
+      properties:
+        currency:
+          type: string
+          maxLength: 3
+          description: |
+            Payment Currency for Bill Payment Simulation
+            Possible Value | Definition
+            --- | ---
+            HKD | Hong Kong dollar
+            CNY | Renminbi
+
+            * Format: ISO 4217 Alpha
+          example: HKD
+          enum:
+            - HKD
+            - CNY
+        amount:
+          type: integer
+          minimum: 1
+          maximum: 999999999999
+          description: >
+            Payment Amount for Bill Payment Simulation
+
+            * Format: Eliminate punctuation and sign, support 2 decimal places according to ISO 4217, e.g. $10.50 = 1050
+          example: 2500
+        suppInfo:
+          type: string
+          maxLength: 140
+          description: |
+            Supplementary Info for Bill Payment Simulation
+            * This value will be shown in subsequent Push Notification.
+          example: Supplementary Information
+    HKsimNonBillPaymentObj:
+      required:
+        - currency
+        - amount
+        - suppInfo
+      type: object
+      properties:
+        currency:
+          type: string
+          maxLength: 3
+          description: |
+            Payment Currency for Bill Payment Simulation
+            Possible Value | Definition
+            --- | ---
+            HKD | Hong Kong dollar
+            CNY | Renminbi
+
+            * Format: ISO 4217 Alpha
+          example: HKD
+          enum:
+            - HKD
+            - CNY
+        amount:
+          type: integer
+          minimum: 1
+          maximum: 999999999999
+          description: >
+            Payment Amount for Bill Payment Simulation
+
+            * Format: Eliminate punctuation and sign, support 2 decimal places according to ISO 4217, e.g. $10.50 = 1050
+          example: 2500
+        suppInfo:
+          type: string
+          maxLength: 140
+          description: |
+            Supplementary Info for Bill Payment Simulation
+            * This value will be shown in subsequent Push Notification.
+          example: Supplementary Information
+    HKpaySimRequestModel:
+      oneOf:
+        - type: object
+          title: Hong Kong Bill Payment
+          required:
+            - txnRef
+            - merId
+            - is_notification_encrypted
+          properties:
+            txnRef:
+              type: string
+              maxLength: 25
+              description: Merchant to provide transaction ID that referred to a specific
+                transaction
+              example: 0002900F06457710500000001
+            merId:
+              type: string
+              maxLength: 15
+              description: Merchant to provide Merchant ID for identification
+              example: H099289H4410000
+            is_notification_encrypted:
+              type: string
+              maxLength: 1
+              description: >
+                Flag to indicate if the Status Notification message is encrypted or
+                not
+              example: Y
+              enum:
+                - Y
+                - N
+            for_bill_payment:
+              $ref: "#/components/schemas/HKsimBillPaymentObj"
+        - type: object
+          title: Hong Kong Non-bill Payment
+          required:
+            - txnRef
+            - merId
+            - is_notification_encrypted
+          properties:
+            txnRef:
+              type: string
+              maxLength: 25
+              description: Merchant to provide transaction ID that referred to a specific
+                transaction
+              example: 0002900F06457710500000001
+            merId:
+              type: string
+              maxLength: 15
+              description: Merchant to provide Merchant ID for identification
+              example: H099289H4410000
+            is_notification_encrypted:
+              type: string
+              maxLength: 1
+              description: >
+                Flag to indicate if the Status Notification message is encrypted or
+                not
+              example: Y
+              enum:
+                - Y
+                - N
+            for_nonbill_payment:
+              $ref: "#/components/schemas/HKsimNonBillPaymentObj"
+    HKpaySimResponseModel:
+      type: object
+      required:
+        - api_gw
+        - response
+      properties:
+        api_gw:
+          $ref: "#/components/schemas/HKcommonRespObj"
+        response:
+          required:
+            - txnRef
+            - proCode
+            - proMsg
+            - currency
+          type: object
+          properties:
+            txnRef:
+              type: string
+              maxLength: 25
+              description: Returning back the Transaction Reference No. provided by merchant
+              example: 0002900F06457710500000001
+            proCode:
+              type: string
+              maxLength: 6
+              description: >
+                Process Return Code
+
+                Possible Value | Definition
+
+                ---|---
+
+                000000  | Payment Success
+
+                900010  | Transaction Record Not Found
+
+                900050  | Transaction Channel Not Available with the corresponding Merchant
+              example: "000000"
+            proMsg:
+              type: string
+              maxLength: 128
+              description: Corresponding Text Message of Process Return Code
+              example: Payment Success
+    HKrefundRqRequestModel:
+      type: object
+      required:
+        - txnRef
+        - merId
+        - bankTxnId
+        - txnAmt
+        - refundAmt
+        - notifyUrl
+      properties:
+        txnRef:
+          type: string
+          maxLength: 25
+          description: Merchant provides transaction reference that refers to a specific
+            transaction
+          example: 0002900F06457710500000001
+        merId:
+          type: string
+          maxLength: 15
+          description: Merchant provides Merchant ID for identification
+          example: H099289H4410000
+        bankTxnId:
+          type: string
+          maxLength: 16
+          description: >
+            Merchant provides HSBC transaction ID that refers to a specific
+            inward credit payment
+
+            * This transaction ID will be seen in HSBC's Daily Collection Detail Report and Global Information Reporting (GIR) Bank Statement. It contains 16 characters with prefix HC such as HCxxxxxxxxxxxxxx where x refers to alphanumeric characters.
+          example: H099289H4410000
+        txnAmt:
+          type: integer
+          minimum: 1
+          maximum: 999999999999
+          description: >
+            Merchant provides original Payment Amount that refers to particular
+            received amount
+
+            * The original received amount can be found in Payment Status Notification API or Business Collect Report
+
+            * Format: Eliminate punctuation and sign, support 2 decimal places according to `ISO 4217`, e.g. $10.50 = 1050
+          example: 5000
+        refundAmt:
+          type: integer
+          minimum: 1
+          maximum: 999999999999
+          description: >
+            Merchant provides requested Refund Amount
+
+            * Refund Amount must not exceed refundable amount. Refundable amount is original transacted amount minus total successful refunded amount.
+
+            * Format: Eliminate punctuation and sign, support 2 decimal places according to `ISO 4217`, e.g. $10.50 = 1050
+          example: 4000
+        notifyUrl:
+          type: string
+          maxLength: 128
+          description: URL provided by Merchant for returning refund status used by Refund
+            Status Notification API
+          example: https://merchant.com/returnRefundStatus
+    HKrefundRqResponseModel:
+      type: object
+      required:
+        - api_gw
+        - response
+      properties:
+        api_gw:
+          $ref: "#/components/schemas/HKcommonRespObj"
+        response:
+          required:
+            - bankTxnId
+            - proCode
+            - proMsg
+          type: object
+          properties:
+            bankTxnId:
+              type: string
+              maxLength: 16
+              description: Returning back the original HSBC transaction ID provided by
+                merchant
+              example: HC80502097323467
+            refundTxnId:
+              type: string
+              maxLength: 16
+              description: Returning back a refund transaction ID that refer to a specific
+                refund transaction
+              example: HC1196080000319R
+            proCode:
+              type: string
+              maxLength: 6
+              description: >
+                Process Return Code
+
+                Possible Value | Return Message | Remark
+
+                --- | --- | ---
+
+                000000 | Refund Request Submitted | 
+
+                800010 | Refund Request Not Allowed??Refund under processing found | When you make additional refund request for the same transaction which already has a processed refund request or a refund request under processing, the system will return this code.
+
+                800020 | Refund Request Not Allowed: Refund Allowable Period is over. Please note the day when the original successful transaction is made is taken as day 1. | A refund request can be raised within 31 calendar days if the original successful transaction is settled before 2023-Apr-02 2:00:00 a.m.. A refund request can be raised within 180 calendar days if the original successful transaction is settled on or after 2023-Apr-02 2:00:00 a.m.. E.g. if payment time is 2023-May-01 00:00:00, the merchant is allowed to make refund request by 2023-Oct-27 23:59:59 the latest.
+
+                800030 | Refund Request Not Allowed: Not Supported in Current Channel | Offline and batch mode bill payment are not supported.
+
+                800040 | Refund Amount exceed refundable amount | Please ensure `refundAmt` <= Refundable amount. Refundable amount is original transacted amount minus total successful refunded amount.
+
+                900000 | Client ID - Merchant ID mapping is not correct/updated | Please check `Authorization` in HTTP Header
+
+                900020 | Merchant ID Not Found | Please check `merId`
+
+                900060 | Payment Transaction Not Found or is Not Matched | Please check `TxnId` or `bankTxnId`
+
+                900070 | Payment Transaction Amount is Not Matched | Please ensure `txnAmt` = the original received amount which can be found in Payment Status Notification API or Business Collect Report
+
+                999999 | Refund Response Exception | Please contact bank.
+              example: "000000"
+            proMsg:
+              type: string
+              maxLength: 128
+              description: Corresponding Text Message of Process Return Code
+              example: Refund Request Submitted
+    HKcommonRespObj:
+      required:
+        - messageId
+        - returnCode
+        - returnReason
+        - sentTime
+        - responseTime
+      type: object
+      properties:
+        messageId:
+          type: string
+          maxLength: 36
+          description: System generated unique message ID only for replace_me internal
+            reference use
+          example: 89817674-daOO-4883
+        returnCode:
+          type: string
+          maxLength: 3
+          description: >
+            System Return Code. 
+
+            * This checking is on API Operational level, in other words, it checks upon Authorization, Connectivity and JSON Message Structure.
+
+
+            Possible Value | Definition
+
+            ---|---
+
+            200 | Successful operation
+
+            400 | Bad Request (With detail message in field `returnReason`)
+
+            500 | Internal Error. Notices: Faster Payment System is a multiple-tiers system, system down or unavailable of any single dependent system (or tier) across the entire FPS pipeline can return HTTP Return Code `500` with different `returnReason`. Furthermore, if one tier which comes before the API Cloud Foundry is unavailable, such as the API Gateway, there will be even no json message returned. Developer is suggested to catch the native HTTP Return Code before trying to look into the `returnCode` in json message.
+          example: "200"
+        returnReason:
+          type: string
+          maxLength: 200
+          description: >
+            Corresponding Text message of returnCode
+
+
+            Corr. Return Code | Return Message Sample | Definition
+
+            ---|---|---
+
+            200 | Successful operation | A successful API operation in terms of Authorization, Connectivity and valid JSON Message Structure. Any checking failure on Business Logic level will be still considered a successful API operation yet the Business Logic checking result will be returned in `response` object.
+
+            400 | Client ID - Merchant ID mapping is not correct/updated! | The binding of Client ID, Merchant ID and Merchant Public Certificate is incorrect or not up-to-date.
+
+            400 | object has missing required properties [field name] | Fail to pass JSON Field Mandatory Check.
+
+            400 | instance type [data type] does not match any allowed primitive type | Fail to pass JSON Field Type Check.
+
+            400 | string [field value] is too long | Fail to pass JSON Field Max Length Check
+
+            400 | instance failed to match at least one required schema among [no. of conditional field] | Fail to pass JSON Conditional Field Check.
+
+            500 | java.net.ConnectException: Connection refused: connect | Notices: Message can be varied depended on the corresponding dependent system which returns this message. Yet, all reasons can be concluded into System Unavailable.
+          example: RETURN_MESSAGE
+        sentTime:
+          type: string
+          maxLength: 27
+          description: >
+            Time of request received by replace_me system from client, only for
+            replace_me internal reference use
+
+            * This is a system time of replace_me API gateway which located in Cloud, timezone is calculated in GMT+0
+          example: 2016-11-15T10:00:00.000Z
+        responseTime:
+          type: string
+          maxLength: 27
+          description: >
+            Time of replace_me system provides response to client, only for
+            replace_me internal reference use
+
+            * This is a system time of replace_me API gateway which located in Cloud, timezone is calculated in GMT+0
+          example: 2016-11-15T10:00:00.000Z
+    HKexceptionModel:
+      type: object
+      required:
+        - api_gw
+      properties:
+        api_gw:
+          $ref: "#/components/schemas/HKcommonRespObj"
+    SGpaySimRequestModel:
+      required:
+      - is_notification_encrypted
+      - merId
+      - txnRef
+      type: object
+      properties:
+        txnRef:
+          maxLength: 25
+          type: string
+          description: Merchant to provide transaction ID that referring to a specific
+            transaction
+          example: Transaction34523411
+        merId:
+          maxLength: 15
+          type: string
+          description: Merchant to provide Merchant ID for identification
+          example: S742000S3910000
+        currency:
+          maxLength: 3
+          type: string
+          description: |
+            Returning back the Payment Currency
+            * Format: ISO 4217 Alpha (e.g. SGD = Singapore Dollar)
+          example: SGD
+        amount:
+          maximum: 999999999999
+          minimum: 1
+          type: integer
+          description: "Returning back the Payment Amount \n* Format: Eliminate punctuation\
+            \ and sign, support 2 decimal places, e.g. $10.50 = 1050\n"
+          example: 1050
+        originatingCustName:
+          maxLength: 140
+          type: string
+          description: |
+            Returning Ordering/Originating Customer Name
+          example: Sean Mante
+        is_notification_encrypted:
+          maxLength: 1
+          type: string
+          description: |
+            Flag to indicate if the Status Notification message is encrypted or not
+          example: Y
+          enum:
+          - Y
+          - N
+    SGpaySimResponseModel:
+      required:
+      - api_gw
+      - response
+      type: object
+      properties:
+        api_gw:
+          $ref: '#/components/schemas/SGcommonRespObj'
+        response:
+          required:
+          - proCode
+          - proMsg
+          - txnRef
+          type: object
+          properties:
+            txnRef:
+              maxLength: 25
+              type: string
+              description: Returning back the Transaction Reference No. provided by
+                merchant
+              example: 0002900F06457710500000001
+            proCode:
+              maxLength: 6
+              type: string
+              description: |
+                Process Return Code
+
+                Possible Value | Definition
+                ---|---
+                000000 | Payment Success
+                900010 | Transaction Record Not Found
+                900020 | Merchant ID Not Found
+              example: "000000"
+            proMsg:
+              maxLength: 128
+              type: string
+              description: Corresponding Text Message of Process Return Code
+              example: Payment Success
+    SGexceptionModel:
+      required:
+      - api_gw
+      type: object
+      properties:
+        api_gw:
+          $ref: '#/components/schemas/SGcommonRespObj'
+    SGcommonRespObj:
+      required:
+      - messageId
+      - responseTime
+      - returnCode
+      - returnReason
+      - sentTime
+      type: object
+      properties:
+        messageId:
+          maxLength: 36
+          type: string
+          description: System generated unique message ID only for HSBC internal reference
+            use
+          example: 89817674-daOO-4883
+        returnCode:
+          maxLength: 3
+          type: string
+          description: "System Return Code. \n* This checking is on API Operational\
+            \ level, in other words, it checks upon Authorization, Connectivity and\
+            \ JSON Message Structure.\n* Developer is suggested to catch the native\
+            \ HTTP Return Code before trying to look into the `returnCode` inside\
+            \ the json message and should not handle any exception case other than\
+            \ `200` during system runtime.\n\nPossible Value | Definition\n---|---\n\
+            200 | Successful operation\n400 | Bad Request (With detail message in\
+            \ field `returnReason`)\n500 | Internal Error. Important Notices: If any\
+            \ tier comes before the API Cloud Foundry is unavailable, such as the\
+            \ API Gateway, there will be no json respond message returned. Furthermore,\
+            \ the respond message of 500 will be ignored by some common HTTP libraries,\
+            \ in such case, the respond message body can be considered as a hint for\
+            \ troubleshooting during development and testing phase.\n"
+          example: "200"
+        returnReason:
+          maxLength: 200
+          type: string
+          description: |
+            Corresponding Text message of returnCode
+
+            Corr. Return Code | Return Message Sample | Definition
+            ---|---|---
+            200 | Successful operation | A successful API operation in terms of Authorization, Connectivity and valid JSON Message Structure. Any checking failure on Business Logic level will be still considered a successful API operation yet the Business Logic checking result will be returned in `response` object.
+            400 | Client ID - Merchant ID mapping is not correct/updated! | The binding of Client ID, Merchant ID and Merchant Public Certificate is incorrect or not up-to-date.
+            400 | object has missing required properties [field name] | Fail to pass JSON Field Mandatory Check.
+            400 | instance type [data type] does not match any allowed primitive type | Fail to pass JSON Field Type Check.
+            400 | string [field value] is too long | Fail to pass JSON Field Max Length Check
+            400 | instance failed to match at least one required schema among [no. of conditional field] | Fail to pass JSON Conditional Field Check.
+            500 | java.net.ConnectException: Connection refused: connect | Notices: Message can be varied depended on the dependent system (which across the entire system pipeline) which returns this message. Yet, all reasons can be concluded into Internal Error or System Unavailable.
+          example: RETURN_MESSAGE
+        sentTime:
+          maxLength: 27
+          type: string
+          description: Time of request received by HSBC system from client, only for
+            HSBC internal reference use
+          example: 2016-11-15T10:00:00.000Z
+        responseTime:
+          maxLength: 27
+          type: string
+          description: Time of HSBC system provides response to client, only for HSBC
+            internal reference use
+          example: 2016-11-15T10:00:00.000Z
+    MYpaySimReqtModel:
+      required:
+      - merchant
+      - order
+      - system
+      - transaction
+      type: object
+      properties:
+        system:
+          $ref: '#/components/schemas/pay_sim_rqt_system_Obj'
+        transaction:
+          $ref: '#/components/schemas/pay_sim_rqt_txn_Obj'
+        merchant:
+          $ref: '#/components/schemas/notif_rqt_merchant_Obj'
+        customer:
+          $ref: '#/components/schemas/notif_rqt_customer_Obj'
+        order:
+          $ref: '#/components/schemas/notif_rqt_order_Obj'
+        bill:
+          $ref: '#/components/schemas/notif_rqt_bill_Obj'
+        supplementary:
+          $ref: '#/components/schemas/notif_rqt_supp_Obj'
+    MYpaySimRespModel:
+      required:
+      - api_gw
+      - response
+      type: object
+      properties:
+        api_gw:
+          $ref: '#/components/schemas/MYcommonRespObj'
+        response:
+          required:
+          - txnRef
+          type: object
+          properties:
+            txnRef:
+              maxLength: 25
+              type: string
+              description: |
+                Transaction Reference defined by Merchant
+              example: "1234567890123456789012345"
+            proCode:
+              maxLength: 6
+              type: string
+              description: |
+                Return Process Code
+
+                Possible Value | Definition
+                ---|---
+                000000 | Transaction Successful
+              example: "000000"
+            proMsg:
+              maxLength: 128
+              type: string
+              description: |
+                Corresponding Text Message of Process Code
+              example: Transaction Successful
+    MYcommonRespObj:
+      required:
+      - messageId
+      - responseTime
+      - returnCode
+      - returnReason
+      - sentTime
+      type: object
+      properties:
+        messageId:
+          maxLength: 36
+          type: string
+          description: System generated unique message ID only for HSBC internal reference
+            use
+          example: 89817674-daOO-4883
+        returnCode:
+          maxLength: 3
+          type: string
+          description: "System Return Code. \n* This checking is on API Operational\
+            \ level, in other words, it checks upon Authorization, Connectivity and\
+            \ JSON Message Structure.\n\nPossible Value | Definition\n---|---\n200\
+            \ | Successful operation\n400 | Bad Request (With detail message in field\
+            \ `returnReason`)\n500 | Internal Error. Notices: Faster Payment System\
+            \ is a multiple-tiers system, system down or unavailable of any single\
+            \ dependent system (or tier) across the entire FPS pipeline can return\
+            \ HTTP Return Code `500` with different `returnReason`. Furthermore, if\
+            \ one tier which comes before the API Cloud Foundry is unavailable, such\
+            \ as the API Gateway, there will be even no json message returned. Developer\
+            \ is suggested to catch the native HTTP Return Code before trying to look\
+            \ into the `returnCode` in json message.\n"
+          example: "200"
+        returnReason:
+          maxLength: 200
+          type: string
+          description: |
+            Corresponding Text message of returnCode
+
+            Corr. Return Code | Return Message Sample | Definition
+            ---|---|---
+            200 | Successful operation | A successful API operation in terms of Authorization, Connectivity and valid JSON Message Structure. Any checking failure on Business Logic level will be still considered a successful API operation yet the Business Logic checking result will be returned in `response` object.
+            400 | Client ID - Merchant ID mapping is not correct/updated! | The binding of Client ID, Merchant ID and Merchant Public Certificate is incorrect or not up-to-date.
+            400 | object has missing required properties [field name] | Fail to pass JSON Field Mandatory Check.
+            400 | instance type [data type] does not match any allowed primitive type | Fail to pass JSON Field Type Check.
+            400 | string [field value] is too long | Fail to pass JSON Field Max Length Check
+            400 | instance failed to match at least one required schema among [no. of conditional field] | Fail to pass JSON Conditional Field Check.
+            500 | java.net.ConnectException: Connection refused: connect | Notices: Message can be varied depended on the corresponding dependent system which returns this message. Yet, all reasons can be concluded into System Unavailable.
+          example: RETURN_MESSAGE
+        sentTime:
+          maxLength: 27
+          type: string
+          description: Time of request received by HSBC system from client, only for
+            HSBC internal reference use
+          example: 2016-11-15T10:00:00.000Z
+        responseTime:
+          maxLength: 27
+          type: string
+          description: Time of HSBC system provides response to client, only for HSBC
+            internal reference use
+          example: 2016-11-15T10:00:00.000Z
+    pay_sim_rqt_system_Obj:
+      required:
+      - is_notification_encrypted
+      type: object
+      properties:
+        is_notification_encrypted:
+          maxLength: 1
+          type: string
+          description: ""
+          example: Y
+    pay_sim_rqt_txn_Obj:
+      required:
+      - referenceLabel
+      - txnChannel
+      - txnRef
+      type: object
+      properties:
+        txnRef:
+          maxLength: 25
+          type: string
+          description: |
+            Transaction Reference defined by Merchant
+          example: "1234567890123456789012345"
+        txnChannel:
+          maxLength: 2
+          type: string
+          description: |
+            Transaction Channel
+
+            Possible Value | Definition
+            ---|---
+            01 | POS
+            02 | e-Commerce / m-Commerce
+          example: "01"
+          enum:
+          - "01"
+          - "02"
+        referenceLabel:
+          maxLength: 25
+          type: string
+          description: |
+            Returning Reference Label
+          example: "987654321987654321"
+    notif_rqt_system_Obj:
+      required:
+      - proCode
+      - proMsg
+      type: object
+      properties:
+        proCode:
+          maxLength: 6
+          type: string
+          description: |
+            Return Process Code
+
+            Possible Value | Definition
+            ---|---
+            000000 | Transaction Successful
+          example: "000000"
+        proMsg:
+          maxLength: 128
+          type: string
+          description: |
+            Corresponding Text Message of Process Code
+          example: Transaction Successful
+    notif_rqt_txn_Obj:
+      required:
+      - bankTxnId
+      - bankTxnTime
+      - notifyTime
+      type: object
+      properties:
+        txnRef:
+          maxLength: 25
+          type: string
+          description: |
+            Returning Transaction Reference defined by Merchant
+          example: "1234567890123456789012345"
+        bankTxnId:
+          maxLength: 35
+          type: string
+          description: |
+            Returning End-to-End Transaction ID
+          example: YYYYMMDDBBBBBBBB030OCCSSSSSSSS
+        bankTxnTime:
+          maxLength: 25
+          type: string
+          description: |
+            Returning HSBC Transaction time for the inward credit payment
+            * Bank system local time. A GMT+7 timezone information is appended to the end of the timestamp to indicate this time is a Malaysian local time. Format?? yyyy-MM-dd'T'HH:mm:ss??hh:mm
+          example: 2018-06-11T14:10:25+07:00
+        notifyTime:
+          maxLength: 25
+          type: string
+          description: |
+            Returning Notification Time
+            * Bank system local time. A GMT+7 timezone information is appended to the end of the timestamp to indicate this time is a Malaysian local time. Format?? yyyy-MM-dd'T'HH:mm:ss??hh:mm
+          example: 2018-06-11T14:10:25+07:00
+        referenceLabel:
+          maxLength: 25
+          type: string
+          description: |
+            Returning Reference Label
+          example: "987654321987654321"
+    notif_rqt_merchant_Obj:
+      required:
+      - merId
+      type: object
+      properties:
+        merId:
+          maxLength: 15
+          type: string
+          description: "Returning Merchant ID       \n"
+          example: M437033M7110000
+        storeLabel:
+          maxLength: 25
+          type: string
+          description: |
+            Store Label
+          example: "987654321"
+        terminalLabel:
+          maxLength: 25
+          type: string
+          description: |
+            Terminal Label
+          example: "987654321"
+    notif_rqt_customer_Obj:
+      type: object
+      properties:
+        consumerLabel:
+          maxLength: 25
+          type: string
+          description: |
+            Consumer Label
+          example: "987654321"
+        loyaltyNumber:
+          maxLength: 25
+          type: string
+          description: |
+            Loyalty Number
+          example: "987654321"
+    notif_rqt_order_Obj:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        amount:
+          maximum: 999999999999
+          minimum: 1
+          type: integer
+          description: |
+            Returning Payment Amount
+            * Format: Eliminate punctuation and sign, support 2 decimal places according to ISO 4217, e.g. $10.50 = 1050
+          example: 500000
+        currency:
+          maxLength: 3
+          type: string
+          description: |
+            Currency
+
+            Possible Value | Definition
+            ---|---
+            MYR| Malaysian Ringgit
+          example: MYR
+          enum:
+          - MYR
+    notif_rqt_bill_Obj:
+      type: object
+      properties:
+        billNumber:
+          maxLength: 25
+          type: string
+          description: |
+            Bill Number
+          example: "987654321"
+        rrn:
+          maxLength: 20
+          type: string
+          description: |
+            Recipient Reference Number (Ref-1)
+          example: "987654321"
+        rrn2:
+          maxLength: 30
+          type: string
+          description: |
+            Recipient Reference Number (Ref-2)
+          example: "987654321"
+    notif_rqt_supp_Obj:
+      type: object
+      properties:
+        mobileNumber:
+          maxLength: 25
+          type: string
+          description: |
+            Mobile Number
+          example: "987654321"
+        purposeOfTransaction:
+          maxLength: 25
+          type: string
+          description: |
+            Purpose Of Transaction
+          example: "987654321"
+        additionalConsumerDataRequest:
+          maxLength: 3
+          type: string
+          description: |
+            Additional Consumer Data Request
+          example: XXX
+        geoCoordinates:
+          maxLength: 25
+          type: string
+          description: |
+            Geo Coordinates
+          example: 13.2904027,108.4265113
+        suppInfo:
+          maxLength: 140
+          type: string
+          description: |
+            Supplementary Info
+          example: Supplementary Info
