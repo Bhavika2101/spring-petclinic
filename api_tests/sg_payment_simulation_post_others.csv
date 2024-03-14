@@ -1,0 +1,11 @@
+Content-Type,message_encrypt,Authorization,statusCode
+application/json,True,Token123,200
+application/xml,False,Token456,404
+text/plain,True,Token789,500
+application/json,False,Token101112,201
+text/html,True,Token131415,301
+application/rss+xml,False,Token161718,400
+text/csv,True,Token192021,500
+application/ld+json,False,Token222324,200
+text/tab-separated-values,True,Token252627,404
+application/vnd.ms-excel,False,Token282930,201
