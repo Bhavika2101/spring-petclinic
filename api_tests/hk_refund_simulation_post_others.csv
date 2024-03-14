@@ -1,0 +1,11 @@
+Content-Type,message_encrypt,Authorization,statusCode
+text/plain,true,XYZ123,200
+application/json,false,ABC987,404
+text/html,true,JKL456,500
+application/xml,false,GHI321,201
+text/css,true,MNO789,403
+application/pdf,false,DEF654,301
+text/javascript,true,PQR123,202
+application/octet-stream,false,STU456,400
+text/plain,true,VWX789,304
+application/json,false,YZA321,503
