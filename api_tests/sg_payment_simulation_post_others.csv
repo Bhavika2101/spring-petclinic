@@ -1,0 +1,11 @@
+txnRef,merId,currency,amount,originatingCustName,is_notification_encrypted
+Transaction12345678,S742000S3910000,SGD,1050,Sean Mante,Y
+Transaction23456789,S742000S3910001,USD,2050,John Doe,Y
+Transaction34567890,S742000S3910002,EUR,3050,Jane Smith,N
+Transaction45678901,S742000S3910003,GBP,4050,Robert Johnson,Y
+Transaction56789012,S742000S3910004,AUD,5050,Michael Williams,N
+Transaction67890123,S742000S3910005,CAD,6050,William Brown,Y
+Transaction78901234,S742000S3910006,CHF,7050,David Jones,N
+Transaction89012345,S742000S3910007,JPY,8050,Charles Miller,Y
+Transaction90123456,S742000S3910008,CNY,9050,Joseph Davis,N
+Transaction01234567,S742000S3910009,BRL,10050,Thomas Garcia,Y
