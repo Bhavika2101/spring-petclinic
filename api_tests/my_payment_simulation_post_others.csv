@@ -1,0 +1,11 @@
+Content-Type,message_encrypt,Authorization,statusCode
+application/json,true,merchant,200
+text/html,false,order,404
+application/xml,true,system,500
+text/plain,false,transaction,403
+application/pdf,true,merchant,201
+image/png,false,order,301
+text/csv,true,system,400
+application/zip,false,transaction,502
+image/jpeg,true,merchant,304
+text/css,false,order,202
