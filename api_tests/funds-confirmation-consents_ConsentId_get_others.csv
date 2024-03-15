@@ -1,0 +1,11 @@
+ConsentId,x-fapi-auth-date,x-fapi-customer-ip-address,x-fapi-interaction-id,Authorization,x-customer-user-agent
+1,2021-09-01T18:30:00Z,192.168.1.1,abcd1234,Bearer 123456,Chrome
+2,2021-09-02T18:30:00Z,192.168.1.2,abcd1235,Bearer 123457,Firefox
+3,2021-09-03T18:30:00Z,192.168.1.3,abcd1236,Bearer 123458,Safari
+4,2021-09-04T18:30:00Z,192.168.1.4,abcd1237,Bearer 123459,Edge
+5,2021-09-05T18:30:00Z,192.168.1.5,abcd1238,Bearer 123460,Opera
+6,2021-09-06T18:30:00Z,192.168.1.6,abcd1239,Bearer 123461,Chrome
+7,2021-09-07T18:30:00Z,192.168.1.7,abcd1240,Bearer 123462,Firefox
+8,2021-09-08T18:30:00Z,192.168.1.8,abcd1241,Bearer 123463,Safari
+9,2021-09-09T18:30:00Z,192.168.1.9,abcd1242,Bearer 123464,Edge
+10,2021-09-10T18:30:00Z,192.168.1.10,abcd1243,Bearer 123465,Opera

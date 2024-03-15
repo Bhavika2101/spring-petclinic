@@ -1,0 +1,11 @@
+Data,Data.ExpirationDateTime,Data.DebtorAccount.SchemeName,Data.DebtorAccount.Identification,Data.DebtorAccount.Name,Data.DebtorAccount.SecondaryIdentification
+{object1},2022-10-01T00:00:00Z,SWIFT,BIC0001,Bank of Baroda,BOB0001A
+{object2},2023-05-15T12:30:00Z,ACH,Routing0002,State Bank of India,SBI0002B
+{object3},2022-12-31T23:59:59Z,SEPA,IBAN0003,Citigroup,CITI0003C
+{object4},2023-01-01T00:00:00Z,SWIFT,BIC0004,HSBC,HSBC0004D
+{object5},2022-07-01T00:00:00Z,ACH,Routing0005,Barclays,BARC0005E
+{object6},2023-06-30T23:59:59Z,SEPA,IBAN0006,Deutsche Bank,DEUT0006F
+{object7},2022-11-30T12:30:00Z,SWIFT,BIC0007,JP Morgan Chase,JPMC0007G
+{object8},2023-02-28T23:59:59Z,ACH,Routing0008,Wells Fargo,WFCO0008H
+{object9},2022-08-15T00:00:00Z,SEPA,IBAN0009,Bank of America,BOFA0009I
+{object10},2023-03-31T12:30:00Z,SWIFT,BIC0010,Goldman Sachs,GS0010J
