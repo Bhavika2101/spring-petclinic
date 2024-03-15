@@ -1,0 +1,11 @@
+merchant,order,system,transaction
+M437033M7110000,1050,{'is_notification_encrypted': 'Y'},{'referenceLabel': '987654321987654321', 'txnChannel': '01', 'txnRef': '1234567890123456789012345'}
+M123456M7830000,2000,{'is_notification_encrypted': 'N'},{'referenceLabel': '876543219876543219', 'txnChannel': '02', 'txnRef': '2345678901234567890123456'}
+M789012M4560000,3000,{'is_notification_encrypted': 'Y'},{'referenceLabel': '765432198765432198', 'txnChannel': '01', 'txnRef': '3456789012345678901234567'}
+M456789M1230000,4000,{'is_notification_encrypted': 'N'},{'referenceLabel': '654321987654321987', 'txnChannel': '02', 'txnRef': '4567890123456789012345678'}
+M012345M6780000,5000,{'is_notification_encrypted': 'Y'},{'referenceLabel': '543219876543219876', 'txnChannel': '01', 'txnRef': '5678901234567890123456789'}
+M678901M2340000,6000,{'is_notification_encrypted': 'N'},{'referenceLabel': '432198765432198765', 'txnChannel': '02', 'txnRef': '6789012345678901234567890'}
+M234567M8900000,7000,{'is_notification_encrypted': 'Y'},{'referenceLabel': '321987654321987654', 'txnChannel': '01', 'txnRef': '7890123456789012345678901'}
+M890123M5670000,8000,{'is_notification_encrypted': 'N'},{'referenceLabel': '219876543219876543', 'txnChannel': '02', 'txnRef': '8901234567890123456789012'}
+M567890M0120000,9000,{'is_notification_encrypted': 'Y'},{'referenceLabel': '198765432198765432', 'txnChannel': '01', 'txnRef': '9012345678901234567890123'}
+M901234M7890000,10000,{'is_notification_encrypted': 'N'},{'referenceLabel': '987654321987654321', 'txnChannel': '02', 'txnRef': '0123456789012345678901234'}
