@@ -1,0 +1,11 @@
+Data,Data.ConsentId,Data.Reference,Data.InstructedAmount,Data.InstructedAmount.Amount,Data.InstructedAmount.Currency
+object1,consent123,ref123,object1A,100,USD
+object2,consent456,ref456,object2A,200,GBP
+object3,consent789,ref789,object3A,300,EUR
+object4,consent101112,ref101112,object4A,400,AUD
+object5,consent131415,ref131415,object5A,500,CAD
+object6,consent161718,ref161718,object6A,600,JPY
+object7,consent192021,ref192021,object7A,700,CHF
+object8,consent222324,ref222324,object8A,800,SEK
+object9,consent252627,ref252627,object9A,900,NZD
+object10,consent282930,ref282930,object10A,1000,INR

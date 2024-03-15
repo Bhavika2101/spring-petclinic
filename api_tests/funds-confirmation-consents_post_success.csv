@@ -1,0 +1,11 @@
+x-fapi-auth-date,x-fapi-customer-ip-address,x-fapi-interaction-id,Authorization,x-customer-user-agent,Data.ExpirationDateTime,Data.DebtorAccount.SchemeName,Data.DebtorAccount.Identification,Data.DebtorAccount.Name,Data.DebtorAccount.SecondaryIdentification
+2022-01-01,192.168.1.1,123456789,auth123,Chrome,2023-01-01,ABC,123456,John Doe,98765
+2022-01-02,192.168.1.2,123456780,auth124,Firefox,2023-01-02,DEF,123457,Jane Doe,98764
+2022-01-03,192.168.1.3,123456781,auth125,Edge,2023-01-03,GHI,123458,James Smith,98763
+2022-01-04,192.168.1.4,123456782,auth126,Safari,2023-01-04,JKL,123459,Jennifer Johnson,98762
+2022-01-05,192.168.1.5,123456783,auth127,Opera,2023-01-05,MNO,123460,Patricia Williams,98761
+2022-01-06,192.168.1.6,123456784,auth128,Chrome,2023-01-06,PQR,123461,Robert Brown,98760
+2022-01-07,192.168.1.7,123456785,auth129,Firefox,2023-01-07,STU,123462,Linda Davis,98759
+2022-01-08,192.168.1.8,123456786,auth130,Edge,2023-01-08,VWX,123463,Michael Miller,98758
+2022-01-09,192.168.1.9,123456787,auth131,Safari,2023-01-09,YZ,123464,Elizabeth Wilson,98757
+2022-01-10,192.168.1.10,123456788,auth132,Opera,2023-01-10,ABC,123465,James Thomas,98756
