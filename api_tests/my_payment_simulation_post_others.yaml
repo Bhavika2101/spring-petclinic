@@ -8,6 +8,7 @@
 # 
 
 # ********RoostGPT********
+
 config:
   target: "http://localhost:3000"  # Replace with your actual API host
   phases:
@@ -28,6 +29,7 @@ scenarios:
           url: "/invalid/url"
           expect:
             - statusCode: 404
+      # This test case could fail if the server is incorrectly configured to return a different status code for invalid URLs
 
       # Missing Authorization header
       - post:
@@ -42,6 +44,7 @@ scenarios:
             transaction: "{{ transaction }}"
           expect:
             - statusCode: 401
+      # This test case could fail if the API doesn't require an Authorization header for this endpoint
 
       # Invalid payload
       - post:
@@ -57,5 +60,6 @@ scenarios:
             transaction: "invalid"
           expect:
             - statusCode: 400
+      # This test case could fail if the API doesn't validate the payload, or if it returns a different status code for invalid payloads
 
       - think: 1

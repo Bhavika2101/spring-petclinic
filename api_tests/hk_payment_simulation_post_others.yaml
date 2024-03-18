@@ -8,23 +8,6 @@
 # 
 
 # ********RoostGPT********
-config:
-  target: "http://api.yourwebsite.com" # replace with your actual host URL
-  phases:
-    - duration: 60
-      arrivalRate: 5
-  plugins:
-    expect: {}
-  payload:
-    path: "hk_payment_simulation_post_others.csv"
-    fields:
-      - "txnRef"
-      - "merId"
-      - "is_notification_encrypted"
-      - "currency"
-      - "amount"
-      - "suppInfo"
-    skipHeader: true
 
 scenarios:
   - name: "Testing non-successful API requests"
