@@ -1,0 +1,11 @@
+txnRef,merId,currency,amount,originatingCustName,is_notification_encrypted
+Transaction123456,S1234567890123,USD,1050,John Doe,Y
+Transaction234567,S2345678901234,EUR,2050,Jane Doe,N
+Transaction345678,S3456789012345,GBP,3050,James Smith,Y
+Transaction456789,S4567890123456,AUD,4050,Jennifer Smith,N
+Transaction567890,S5678901234567,CAD,5050,Robert Johnson,Y
+Transaction678901,S6789012345678,SGD,6050,Mary Johnson,N
+Transaction789012,S7890123456789,JPY,7050,Michael Williams,Y
+Transaction890123,S8901234567890,CNY,8050,Patricia Williams,N
+Transaction901234,S9012345678901,INR,9050,David Brown,Y
+Transaction012345,S0123456789012,BRL,10050,Elizabeth Brown,N

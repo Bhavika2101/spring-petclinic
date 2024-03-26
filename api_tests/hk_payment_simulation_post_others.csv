@@ -1,0 +1,11 @@
+txnRef,merId,is_notification_encrypted,for_bill_payment,for_nonbill_payment
+0002900F06457710500000001,H099289H4410000,Y,{currency: HKD, amount: 2500, suppInfo: Supplementary Information},
+0002900F06457710500000002,H099289H4410001,N,{currency: CNY, amount: 5000, suppInfo: Additional Information},
+0002900F06457710500000003,H099289H4410002,Y,{currency: HKD, amount: 7500, suppInfo: Extra Information},
+0002900F06457710500000004,H099289H4410003,N,{currency: CNY, amount: 10000, suppInfo: Additional Supplementary Information},
+0002900F06457710500000005,H099289H4410004,Y,{currency: HKD, amount: 12500, suppInfo: More Information}, 
+0002900F06457710500000006,H099289H4410005,N,{currency: CNY, amount: 15000, suppInfo: Further Information},
+0002900F06457710500000007,H099289H4410006,Y,{currency: HKD, amount: 17500, suppInfo: Further Supplementary Information},
+0002900F06457710500000008,H099289H4410007,N,{currency: CNY, amount: 20000, suppInfo: More Supplementary Information},
+0002900F06457710500000009,H099289H4410008,Y,{currency: HKD, amount: 22500, suppInfo: Extra Supplementary Information},
+0002900F06457710500000010,H099289H4410009,N,{currency: CNY, amount: 25000, suppInfo: Additional Extra Information},
