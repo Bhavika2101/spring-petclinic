@@ -1,0 +1,11 @@
+ConsentId,x-fapi-auth-date,x-fapi-customer-ip-address,x-fapi-interaction-id,Authorization,x-customer-user-agent
+1,2022-02-25,192.168.1.1,3fa85f64-5717-4562-b3fc-2c963f66afa6,Authorized,Mozilla/5.0
+2,2022-02-24,192.168.1.2,ba14f02d-5717-4562-b3fc-2c963f66afa7,Authorized,Chrome/89.0
+3,2022-02-23,192.168.1.3,5f64fa85-5717-4562-b3fc-2c963f66afa8,Authorized,Firefox/86.0
+4,2022-02-22,192.168.1.4,2d14ba0f-5717-4562-b3fc-2c963f66afa9,Authorized,Safari/605.1.15
+5,2022-02-21,192.168.1.5,64fa853f-5717-4562-b3fc-2c963f66afb0,Authorized,Edge/89.0
+6,2022-02-20,192.168.1.6,0f2dba14-5717-4562-b3fc-2c963f66afb1,Authorized,Opera/62.0
+7,2022-02-19,192.168.1.7,853f64fa-5717-4562-b3fc-2c963f66afb2,Authorized,Internet Explorer/11.0
+8,2022-02-18,192.168.1.8,14ba0f2d-5717-4562-b3fc-2c963f66afb3,Authorized,Firefox/86.0
+9,2022-02-17,192.168.1.9,fa853f64-5717-4562-b3fc-2c963f66afb4,Authorized,Chrome/89.0
+10,2022-02-16,192.168.1.10,ba0f2d14-5717-4562-b3fc-2c963f66afb5,Authorized,Mozilla/5.0
