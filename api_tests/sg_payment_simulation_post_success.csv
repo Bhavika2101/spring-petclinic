@@ -1,0 +1,11 @@
+Content-Type,message_encrypt,Authorization,statusCode
+application/json,TRUE,Auth1234,200
+application/json,FALSE,Auth5678,404
+application/json,TRUE,Auth9012,500
+application/json,FALSE,Auth3456,301
+application/json,TRUE,Auth7890,200
+application/json,FALSE,Auth2345,404
+application/json,TRUE,Auth6789,500
+application/json,FALSE,Auth0123,301
+application/json,TRUE,Auth4567,200
+application/json,FALSE,Auth8901,404
