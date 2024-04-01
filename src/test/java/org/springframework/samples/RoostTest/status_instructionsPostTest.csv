@@ -1,0 +1,11 @@
+Authorization,AdditionalCSVvaluInfo,x-fapi-customer-ip-address,x-fapi-auth-date,x-fapi-interaction-id,x-idempotency-key,merchantInstructionIdentification,creditorAccount,bankCode,accountIdentification,currency,accountSchemeName,accountSubType,statusCode
+Auth1,LbGpjj8KaH5wrEfg,192.168.1.1,2022-02-01T13:00:00Z,Interact1,IdempoKey1,MercInstr1,CredAcc1,001,AccIdent1,USD,BBAN,Current Account,201
+Auth2,LbGpjj8KaH5wrEfg,192.168.1.2,2022-02-01T13:05:00Z,Interact2,IdempoKey2,MercInstr2,CredAcc2,002,AccIdent2,EUR,BBAN,Savings Account,400
+Auth3,LbGpjj8KaH5wrEfg,192.168.1.3,2022-02-01T13:10:00Z,Interact3,IdempoKey3,MercInstr3,CredAcc3,003,AccIdent3,GBP,BBAN,Student Account,401
+Auth4,LbGpjj8KaH5wrEfg,192.168.1.4,2022-02-01T13:15:00Z,Interact4,IdempoKey4,MercInstr4,CredAcc4,004,AccIdent4,JPY,BBAN,CACC,403
+Auth5,LbGpjj8KaH5wrEfg,192.168.1.5,2022-02-01T13:20:00Z,Interact5,IdempoKey5,MercInstr5,CredAcc5,005,AccIdent5,INR,BBAN,CARD,404
+Auth6,LbGpjj8KaH5wrEfg,192.168.1.6,2022-02-01T13:25:00Z,Interact6,IdempoKey6,MercInstr6,CredAcc6,006,AccIdent6,CNY,BBAN,DDA – Current & Savings Accounts,405
+Auth7,LbGpjj8KaH5wrEfg,192.168.1.7,2022-02-01T13:30:00Z,Interact7,IdempoKey7,MercInstr7,CredAcc7,007,AccIdent7,AUD,BBAN,CDA – Term Deposits,406
+Auth8,LbGpjj8KaH5wrEfg,192.168.1.8,2022-02-01T13:35:00Z,Interact8,IdempoKey8,MercInstr8,CredAcc8,008,AccIdent8,CHF,BBAN,ILA – Loans,415
+Auth9,LbGpjj8KaH5wrEfg,192.168.1.9,2022-02-01T13:40:00Z,Interact9,IdempoKey9,MercInstr9,CredAcc9,009,AccIdent9,CAD,BBAN,CCA – Credit Cards,500
+Auth10,LbGpjj8KaH5wrEfg,192.168.1.10,2022-02-01T13:45:00Z,Interact10,IdempoKey10,MercInstr10,CredAcc10,010,AccIdent10,NZD,BBAN,OTH - Other,201
