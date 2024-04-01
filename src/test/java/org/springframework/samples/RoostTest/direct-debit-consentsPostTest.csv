@@ -1,0 +1,11 @@
+Authorization^|^AdditionalCSVvaluInfo^|^Content-Type^|^x-fapi-auth-date^|^x-fapi-customer-ip-address^|^x-fapi-interaction-id^|^Accept-Language^|^data^|^permissions^|^expirationDate^|^statusCode
+auth1^|^info1^|^text/html^|^2022-08-01^|^192.168.1.1^|^interact1^|^en-HK^|^{name: 'John', age: 30}^|^['read', 'write']^|^2022-12-31^|^201
+auth2^|^info2^|^application/json^|^2022-08-02^|^192.168.1.2^|^interact2^|^zh-HK^|^{name: 'Jane', age: 25}^|^['read']^|^2023-01-01^|^400
+auth3^|^info3^|^application/xml^|^2022-08-03^|^192.168.1.3^|^interact3^|^zh-CN^|^{name: 'Jim', age: 35}^|^['write']^|^2023-02-01^|^401
+auth4^|^info4^|^text/plain^|^2022-08-04^|^192.168.1.4^|^interact4^|^en-HK^|^{name: 'Julia', age: 40}^|^['read', 'write', 'delete']^|^2023-03-01^|^403
+auth5^|^info5^|^application/json^|^2022-08-05^|^192.168.1.5^|^interact5^|^zh-HK^|^{name: 'Jason', age: 45}^|^['read', 'delete']^|^2023-04-01^|^405
+auth6^|^info6^|^application/xml^|^2022-08-06^|^192.168.1.6^|^interact6^|^zh-CN^|^{name: 'Jill', age: 50}^|^['write', 'delete']^|^2023-05-01^|^406
+auth7^|^info7^|^text/plain^|^2022-08-07^|^192.168.1.7^|^interact7^|^en-HK^|^{name: 'Jerry', age: 55}^|^['read', 'write', 'execute']^|^2023-06-01^|^415
+auth8^|^info8^|^application/json^|^2022-08-08^|^192.168.1.8^|^interact8^|^zh-HK^|^{name: 'Jasmine', age: 60}^|^['execute']^|^2023-07-01^|^429
+auth9^|^info9^|^application/xml^|^2022-08-09^|^192.168.1.9^|^interact9^|^zh-CN^|^{name: 'Jacob', age: 65}^|^['read', 'execute']^|^2023-08-01^|^500
+auth10^|^info10^|^text/plain^|^2022-08-10^|^192.168.1.10^|^interact10^|^en-HK^|^{name: 'Joy', age: 70}^|^['write', 'execute']^|^2023-09-01^|^503
