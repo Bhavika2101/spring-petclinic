@@ -1,0 +1,11 @@
+consentId|AdditionalCSVvaluInfo|Authorization|x-fapi-auth-date|x-fapi-customer-ip-address|x-fapi-interaction-id|Accept-Language|statusCode
+123abc|169.254.169.254|Bearer xyz|2022-01-01|192.168.1.1|interaction1|en-HK|204
+456def|169.254.169.254|Bearer abc|2022-01-02|192.168.1.2|interaction2|zh-HK|400
+789ghi|169.254.169.254|Bearer mno|2022-01-03|192.168.1.3|interaction3|zh-CN|401
+012jkl|169.254.169.254|Bearer pqr|2022-01-04|192.168.1.4|interaction4|en-HK|403
+345mno|169.254.169.254|Bearer stu|2022-01-05|192.168.1.5|interaction5|zh-HK|405
+678pqr|169.254.169.254|Bearer vwx|2022-01-06|192.168.1.6|interaction6|zh-CN|406
+901stu|169.254.169.254|Bearer yz1|2022-01-07|192.168.1.7|interaction7|en-HK|429
+234vwx|169.254.169.254|Bearer 123|2022-01-08|192.168.1.8|interaction8|zh-HK|500
+567yz1|169.254.169.254|Bearer 456|2022-01-09|192.168.1.9|interaction9|zh-CN|503
+890123|169.254.169.254|Bearer 789|2022-01-10|192.168.1.10|interaction10|en-HK|504
