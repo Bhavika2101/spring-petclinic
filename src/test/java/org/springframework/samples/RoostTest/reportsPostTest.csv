@@ -1,0 +1,11 @@
+Authorization^|^AdditionalCSVvaluInfo^|^x-fapi-customer-ip-address^|^x-fapi-auth-date^|^x-fapi-interaction-id^|^x-idempotency-key^|^reportType^|^reportingDate^|^creditorAccount^|^bankCode^|^accountIdentification^|^currency^|^accountSchemeName^|^accountSubType^|^statusCode
+Bearer 1234567890^|^LbGpjj8KaH5wrEfg^|^192.168.1.1^|^2022-01-01^|^INT123^|^IDP1234567890^|^DDAReport^|^2022-01-02^|^{"id":"123","type":"Individual"}^|^123^|^ACC1234567890^|^USD^|^BBAN^|^Current Account^|^201
+Bearer 0987654321^|^LbGpjj8KaH5wrEfg^|^192.168.1.2^|^2022-02-01^|^INT456^|^IDP0987654321^|^DDIReport^|^2022-02-02^|^{"id":"456","type":"Company"}^|^234^|^ACC0987654321^|^EUR^|^BBAN^|^Savings Account^|^400
+Bearer 1122334455^|^LbGpjj8KaH5wrEfg^|^192.168.1.3^|^2022-03-01^|^INT789^|^IDP1122334455^|^DDAReport^|^2022-03-02^|^{"id":"789","type":"Individual"}^|^345^|^ACC1122334455^|^GBP^|^BBAN^|^Student Account^|^401
+Bearer 5566778899^|^LbGpjj8KaH5wrEfg^|^192.168.1.4^|^2022-04-01^|^INT012^|^IDP5566778899^|^DDIReport^|^2022-04-02^|^{"id":"012","type":"Company"}^|^456^|^ACC5566778899^|^JPY^|^BBAN^|^CACC^|^403
+Bearer 9911223344^|^LbGpjj8KaH5wrEfg^|^192.168.1.5^|^2022-05-01^|^INT345^|^IDP9911223344^|^DDAReport^|^2022-05-02^|^{"id":"345","type":"Individual"}^|^567^|^ACC9911223344^|^INR^|^BBAN^|^CARD^|^404
+Bearer 7788991122^|^LbGpjj8KaH5wrEfg^|^192.168.1.6^|^2022-06-01^|^INT678^|^IDP7788991122^|^DDIReport^|^2022-06-02^|^{"id":"678","type":"Company"}^|^678^|^ACC7788991122^|^AUD^|^BBAN^|^DDA – Current & Savings Accounts^|^405
+Bearer 4455667788^|^LbGpjj8KaH5wrEfg^|^192.168.1.7^|^2022-07-01^|^INT901^|^IDP4455667788^|^DDAReport^|^2022-07-02^|^{"id":"901","type":"Individual"}^|^789^|^ACC4455667788^|^CAD^|^BBAN^|^CDA – Term Deposits^|^406
+Bearer 2233445566^|^LbGpjj8KaH5wrEfg^|^192.168.1.8^|^2022-08-01^|^INT234^|^IDP2233445566^|^DDIReport^|^2022-08-02^|^{"id":"234","type":"Company"}^|^890^|^ACC2233445566^|^CHF^|^BBAN^|^ILA – Loans^|^415
+Bearer 3344556677^|^LbGpjj8KaH5wrEfg^|^192.168.1.9^|^2022-09-01^|^INT567^|^IDP3344556677^|^DDAReport^|^2022-09-02^|^{"id":"567","type":"Individual"}^|^901^|^ACC3344556677^|^CNY^|^BBAN^|^CCA – Credit Cards^|^500
+Bearer 5566778899^|^LbGpjj8KaH5wrEfg^|^192.168.1.10^|^2022-10-01^|^INT890^|^IDP5566778899^|^DDIReport^|^2022-10-02^|^{"id":"890","type":"Company"}^|^012^|^ACC5566778899^|^BRL^|^BBAN^|^OTH - Other^|^201
