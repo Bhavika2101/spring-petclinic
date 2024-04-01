@@ -1,0 +1,11 @@
+Authorization,AdditionalCSVvaluInfo,x-fapi-customer-ip-address,x-fapi-auth-date,x-fapi-interaction-id,x-idempotency-key,merchantRequestIdentification,creditorAccount,bankCode,accountIdentification,currency,accountSchemeName,accountSubType,statusCode
+Token_Bearer_1,LbGpjj8KaH5wrEfg,192.0.2.1,2022-09-15T15:53:00Z,Interaction_1,Idempotency_1,Merchant_1,Account_1,001,AccountID_1,USD,BBAN,Current Account,201
+Token_Bearer_2,LbGpjj8KaH5wrEfg,192.0.2.2,2022-09-16T16:54:00Z,Interaction_2,Idempotency_2,Merchant_2,Account_2,002,AccountID_2,EUR,BBAN,Savings Account,400
+Token_Bearer_3,LbGpjj8KaH5wrEfg,192.0.2.3,2022-09-17T17:55:00Z,Interaction_3,Idempotency_3,Merchant_3,Account_3,003,AccountID_3,GBP,BBAN,Student Account,401
+Token_Bearer_4,LbGpjj8KaH5wrEfg,192.0.2.4,2022-09-18T18:56:00Z,Interaction_4,Idempotency_4,Merchant_4,Account_4,004,AccountID_4,AUD,BBAN,CACC,403
+Token_Bearer_5,LbGpjj8KaH5wrEfg,192.0.2.5,2022-09-19T19:57:00Z,Interaction_5,Idempotency_5,Merchant_5,Account_5,005,AccountID_5,JPY,BBAN,CARD,404
+Token_Bearer_6,LbGpjj8KaH5wrEfg,192.0.2.6,2022-09-20T20:58:00Z,Interaction_6,Idempotency_6,Merchant_6,Account_6,006,AccountID_6,CAD,BBAN,DDA – Current & Savings Accounts,405
+Token_Bearer_7,LbGpjj8KaH5wrEfg,192.0.2.7,2022-09-21T21:59:00Z,Interaction_7,Idempotency_7,Merchant_7,Account_7,007,AccountID_7,CHF,BBAN,CDA – Term Deposits,406
+Token_Bearer_8,LbGpjj8KaH5wrEfg,192.0.2.8,2022-09-22T22:00:00Z,Interaction_8,Idempotency_8,Merchant_8,Account_8,008,AccountID_8,CNY,BBAN,ILA – Loans,415
+Token_Bearer_9,LbGpjj8KaH5wrEfg,192.0.2.9,2022-09-23T23:01:00Z,Interaction_9,Idempotency_9,Merchant_9,Account_9,009,AccountID_9,INR,BBAN,CCA – Credit Cards,500
+Token_Bearer_10,LbGpjj8KaH5wrEfg,192.0.2.10,2022-09-24T00:02:00Z,Interaction_10,Idempotency_10,Merchant_10,Account_10,010,AccountID_10,BRL,BBAN,OTH - Other,201

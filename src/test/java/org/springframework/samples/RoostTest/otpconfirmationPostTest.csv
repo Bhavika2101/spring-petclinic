@@ -1,0 +1,11 @@
+Authorization,AdditionalCSVvaluInfo,x-fapi-customer-ip-address,x-fapi-auth-date,x-fapi-interaction-id,x-idempotency-key,mandateIdentification,otpIdentificationNumber,otpPassword,creditorAccount,bankCode,accountIdentification,currency,accountSchemeName,accountSubType,statusCode
+"Bearer 123456","LbGpjj8KaH5wrEfg","192.168.1.1","2022-01-01","abc123","idemKey1","mandate1","1234567890","password1","{\"type\": \"object\"}","001","accId1","USD","BBAN","Current Account","201"
+"Bearer 234567","LbGpjj8KaH5wrEfg","192.168.1.2","2022-01-02","abc124","idemKey2","mandate2","1234567891","password2","{\"type\": \"object\"}","002","accId2","EUR","BBAN","Savings Account","400"
+"Bearer 345678","LbGpjj8KaH5wrEfg","192.168.1.3","2022-01-03","abc125","idemKey3","mandate3","1234567892","password3","{\"type\": \"object\"}","003","accId3","JPY","BBAN","Student Account","401"
+"Bearer 456789","LbGpjj8KaH5wrEfg","192.168.1.4","2022-01-04","abc126","idemKey4","mandate4","1234567893","password4","{\"type\": \"object\"}","004","accId4","GBP","BBAN","CACC","403"
+"Bearer 567890","LbGpjj8KaH5wrEfg","192.168.1.5","2022-01-05","abc127","idemKey5","mandate5","1234567894","password5","{\"type\": \"object\"}","005","accId5","CNY","BBAN","CARD","404"
+"Bearer 678901","LbGpjj8KaH5wrEfg","192.168.1.6","2022-01-06","abc128","idemKey6","mandate6","1234567895","password6","{\"type\": \"object\"}","006","accId6","INR","BBAN","DDA – Current & Savings Accounts","405"
+"Bearer 789012","LbGpjj8KaH5wrEfg","192.168.1.7","2022-01-07","abc129","idemKey7","mandate7","1234567896","password7","{\"type\": \"object\"}","007","accId7","AUD","BBAN","CDA – Term Deposits","406"
+"Bearer 890123","LbGpjj8KaH5wrEfg","192.168.1.8","2022-01-08","abc130","idemKey8","mandate8","1234567897","password8","{\"type\": \"object\"}","008","accId8","CAD","BBAN","ILA – Loans","415"
+"Bearer 901234","LbGpjj8KaH5wrEfg","192.168.1.9","2022-01-09","abc131","idemKey9","mandate9","1234567898","password9","{\"type\": \"object\"}","009","accId9","BRL","BBAN","CCA – Credit Cards","500"
+"Bearer 012345","LbGpjj8KaH5wrEfg","192.168.1.10","2022-01-10","abc132","idemKey10","mandate10","1234567899","password10","{\"type\": \"object\"}","010","accId10","CHF","BBAN","OTH - Other","201"
