@@ -1,0 +1,11 @@
+consentId,AdditionalCSVvaluInfo,Authorization,x-fapi-auth-date,x-fapi-customer-ip-address,x-fapi-interaction-id,Accept-Language,statusCode
+cnsnt123,169.254.169.254,Auth1234,2022-01-01,192.168.0.1,Intrctn1234,en-HK,200
+cnsnt456,169.254.169.254,Auth5678,2022-02-02,192.168.0.2,Intrctn5678,zh-HK,400
+cnsnt789,169.254.169.254,Auth9012,2022-03-03,192.168.0.3,Intrctn9012,zh-CN,401
+cnsnt321,169.254.169.254,Auth3456,2022-04-04,192.168.0.4,Intrctn3456,en-HK,403
+cnsnt654,169.254.169.254,Auth7890,2022-05-05,192.168.0.5,Intrctn7890,zh-HK,405
+cnsnt987,169.254.169.254,Auth1234,2022-06-06,192.168.0.6,Intrctn1234,zh-CN,406
+cnsnt741,169.254.169.254,Auth5678,2022-07-07,192.168.0.7,Intrctn5678,en-HK,429
+cnsnt852,169.254.169.254,Auth9012,2022-08-08,192.168.0.8,Intrctn9012,zh-HK,500
+cnsnt963,169.254.169.254,Auth3456,2022-09-09,192.168.0.9,Intrctn3456,zh-CN,503
+cnsnt159,169.254.169.254,Auth7890,2022-10-10,192.168.0.10,Intrctn7890,en-HK,504
