@@ -1,0 +1,11 @@
+Authorization,AdditionalCSVvaluInfo,Content-Type,x-fapi-auth-date,x-fapi-customer-ip-address,x-fapi-interaction-id,Accept-Language,data,permissions,expirationDate,statusCode
+token1,169.254.169.254,application/json,2021-01-01T10:00:00Z,192.0.2.0,interaction1,en-HK,{"name": "John Doe"},["read","write"],2022-12-31T23:59:59Z,201
+token2,169.254.169.254,text/plain,2021-01-02T11:00:00Z,192.0.2.1,interaction2,zh-HK,{"name": "Jane Doe"},["read"],2023-01-01T23:59:59Z,400
+token3,169.254.169.254,application/xml,2021-01-03T12:00:00Z,192.0.2.2,interaction3,zh-CN,{"name": "Bob Smith"},["write"],2024-01-01T23:59:59Z,401
+token4,169.254.169.254,text/csv,2021-01-04T13:00:00Z,192.0.2.3,interaction4,en-HK,{"name": "Alice Johnson"},["read","write"],2025-01-01T23:59:59Z,403
+token5,169.254.169.254,application/json,2021-01-05T14:00:00Z,192.0.2.4,interaction5,zh-HK,{"name": "Charlie Brown"},["read"],2026-01-01T23:59:59Z,405
+token6,169.254.169.254,text/plain,2021-01-06T15:00:00Z,192.0.2.5,interaction6,zh-CN,{"name": "Diana Prince"},["write"],2027-01-01T23:59:59Z,406
+token7,169.254.169.254,application/xml,2021-01-07T16:00:00Z,192.0.2.6,interaction7,en-HK,{"name": "Clark Kent"},["read","write"],2028-01-01T23:59:59Z,415
+token8,169.254.169.254,text/csv,2021-01-08T17:00:00Z,192.0.2.7,interaction8,zh-HK,{"name": "Bruce Wayne"},["read"],2029-01-01T23:59:59Z,429
+token9,169.254.169.254,application/json,2021-01-09T18:00:00Z,192.0.2.8,interaction9,zh-CN,{"name": "Peter Parker"},["write"],2030-01-01T23:59:59Z,500
+token10,169.254.169.254,text/plain,2021-01-10T19:00:00Z,192.0.2.9,interaction10,en-HK,{"name": "Tony Stark"},["read","write"],2031-01-01T23:59:59Z,503
