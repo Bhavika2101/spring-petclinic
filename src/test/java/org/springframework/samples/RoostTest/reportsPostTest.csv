@@ -1,0 +1,11 @@
+Authorization^|^AdditionalCSVvaluInfo^|^x-fapi-customer-ip-address^|^x-fapi-auth-date^|^x-fapi-interaction-id^|^x-idempotency-key^|^reportType^|^reportingDate^|^creditorAccount^|^bankCode^|^accountIdentification^|^currency^|^accountSchemeName^|^accountSubType^|^statusCode
+Bearer 1234567890^|^LbGpjj8KaH5wrEfg^|^192.168.1.1^|^2022-01-01^|^INT123^|^IDM456^|^DDAReport^|^2022-02-01^|^Creditor1^|^001^|^AccID123^|^USD^|^BBAN^|^Current Account^|^201
+Bearer 0987654321^|^LbGpjj8KaH5wrEfg^|^192.168.1.2^|^2022-01-02^|^INT124^|^IDM457^|^DDIReport^|^2022-02-02^|^Creditor2^|^002^|^AccID124^|^EUR^|^BBAN^|^Savings Account^|^400
+Bearer 1122334455^|^LbGpjj8KaH5wrEfg^|^192.168.1.3^|^2022-01-03^|^INT125^|^IDM458^|^DDAReport^|^2022-02-03^|^Creditor3^|^003^|^AccID125^|^GBP^|^BBAN^|^Student Account^|^401
+Bearer 5566778899^|^LbGpjj8KaH5wrEfg^|^192.168.1.4^|^2022-01-04^|^INT126^|^IDM459^|^DDIReport^|^2022-02-04^|^Creditor4^|^004^|^AccID126^|^JPY^|^BBAN^|^CACC^|^403
+Bearer 9911223344^|^LbGpjj8KaH5wrEfg^|^192.168.1.5^|^2022-01-05^|^INT127^|^IDM460^|^DDAReport^|^2022-02-05^|^Creditor5^|^005^|^AccID127^|^CAD^|^BBAN^|^CARD^|^404
+Bearer 7755443322^|^LbGpjj8KaH5wrEfg^|^192.168.1.6^|^2022-01-06^|^INT128^|^IDM461^|^DDIReport^|^2022-02-06^|^Creditor6^|^006^|^AccID128^|^AUD^|^BBAN^|^DDA^|^405
+Bearer 8899665544^|^LbGpjj8KaH5wrEfg^|^192.168.1.7^|^2022-01-07^|^INT129^|^IDM462^|^DDAReport^|^2022-02-07^|^Creditor7^|^007^|^AccID129^|^NZD^|^BBAN^|^CDA^|^406
+Bearer 2233445566^|^LbGpjj8KaH5wrEfg^|^192.168.1.8^|^2022-01-08^|^INT130^|^IDM463^|^DDIReport^|^2022-02-08^|^Creditor8^|^008^|^AccID130^|^ZAR^|^BBAN^|^ILA^|^415
+Bearer 6677889900^|^LbGpjj8KaH5wrEfg^|^192.168.1.9^|^2022-01-09^|^INT131^|^IDM464^|^DDAReport^|^2022-02-09^|^Creditor9^|^009^|^AccID131^|^INR^|^BBAN^|^CCA^|^500
+Bearer 4455667788^|^LbGpjj8KaH5wrEfg^|^192.168.1.10^|^2022-01-10^|^INT132^|^IDM465^|^DDIReport^|^2022-02-10^|^Creditor10^|^010^|^AccID132^|^CHF^|^BBAN^|^OTH^|^201

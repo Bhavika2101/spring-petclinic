@@ -1,0 +1,11 @@
+Authorization^|^AdditionalCSVvaluInfo^|^x-fapi-customer-ip-address^|^x-fapi-auth-date^|^x-fapi-interaction-id^|^x-idempotency-key^|^mandateIdentification^|^otpIdentificationNumber^|^otpPassword^|^creditorAccount^|^bankCode^|^accountIdentification^|^currency^|^accountSchemeName^|^accountSubType^|^statusCode
+Auth1^|^Info1^|^192.168.1.1^|^2022-01-01^|^Inter1^|^Key1^|^Mandate1^|^OTP1^|^Pass1^|^Account1^|^001^|^Ident1^|^USD^|^BBAN^|^Current Account^|^201
+Auth2^|^Info2^|^192.168.1.2^|^2022-01-02^|^Inter2^|^Key2^|^Mandate2^|^OTP2^|^Pass2^|^Account2^|^002^|^Ident2^|^EUR^|^BBAN^|^Savings Account^|^400
+Auth3^|^Info3^|^192.168.1.3^|^2022-01-03^|^Inter3^|^Key3^|^Mandate3^|^OTP3^|^Pass3^|^Account3^|^003^|^Ident3^|^GBP^|^BBAN^|^Student Account^|^401
+Auth4^|^Info4^|^192.168.1.4^|^2022-01-04^|^Inter4^|^Key4^|^Mandate4^|^OTP4^|^Pass4^|^Account4^|^004^|^Ident4^|^JPY^|^BBAN^|^CACC^|^403
+Auth5^|^Info5^|^192.168.1.5^|^2022-01-05^|^Inter5^|^Key5^|^Mandate5^|^OTP5^|^Pass5^|^Account5^|^005^|^Ident5^|^CAD^|^BBAN^|^CARD^|^404
+Auth6^|^Info6^|^192.168.1.6^|^2022-01-06^|^Inter6^|^Key6^|^Mandate6^|^OTP6^|^Pass6^|^Account6^|^006^|^Ident6^|^AUD^|^BBAN^|^DDA^|^405
+Auth7^|^Info7^|^192.168.1.7^|^2022-01-07^|^Inter7^|^Key7^|^Mandate7^|^OTP7^|^Pass7^|^Account7^|^007^|^Ident7^|^NZD^|^BBAN^|^CDA^|^406
+Auth8^|^Info8^|^192.168.1.8^|^2022-01-08^|^Inter8^|^Key8^|^Mandate8^|^OTP8^|^Pass8^|^Account8^|^008^|^Ident8^|^CHF^|^BBAN^|^ILA^|^415
+Auth9^|^Info9^|^192.168.1.9^|^2022-01-09^|^Inter9^|^Key9^|^Mandate9^|^OTP9^|^Pass9^|^Account9^|^009^|^Ident9^|^SGD^|^BBAN^|^CCA^|^500
+Auth10^|^Info10^|^192.168.1.10^|^2022-01-10^|^Inter10^|^Key10^|^Mandate10^|^OTP10^|^Pass10^|^Account10^|^010^|^Ident10^|^INR^|^BBAN^|^OTH^|^201
