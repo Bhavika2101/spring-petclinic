@@ -1,0 +1,11 @@
+Authorization^|^AdditionalCSVvaluInfo^|^x-fapi-customer-ip-address^|^x-fapi-auth-date^|^x-fapi-interaction-id^|^x-idempotency-key^|^reportType^|^reportingDate^|^creditorAccount^|^bankCode^|^accountIdentification^|^currency^|^accountSchemeName^|^accountSubType^|^statusCode
+Bearer 1234567890^|^LbGpjj8KaH5wrEfg^|^192.168.1.1^|^2022-01-01^|^XYZ123^|^Key123456^|^DDAReport^|^2023-01-01^|^{"id":"123456"}^|^123^|^ABC12345^|^USD^|^BBAN^|^Current Account^|^201
+Bearer 0987654321^|^LbGpjj8KaH5wrEfg^|^192.168.1.2^|^2022-01-02^|^XYZ124^|^Key123457^|^DDIReport^|^2023-01-02^|^{"id":"123457"}^|^124^|^ABC12346^|^EUR^|^BBAN^|^Savings Account^|^400
+Bearer 1122334455^|^LbGpjj8KaH5wrEfg^|^192.168.1.3^|^2022-01-03^|^XYZ125^|^Key123458^|^DDAReport^|^2023-01-03^|^{"id":"123458"}^|^125^|^ABC12347^|^GBP^|^BBAN^|^Student Account^|^401
+Bearer 5566778899^|^LbGpjj8KaH5wrEfg^|^192.168.1.4^|^2022-01-04^|^XYZ126^|^Key123459^|^DDIReport^|^2023-01-04^|^{"id":"123459"}^|^126^|^ABC12348^|^JPY^|^BBAN^|^CACC^|^403
+Bearer 2233445566^|^LbGpjj8KaH5wrEfg^|^192.168.1.5^|^2022-01-05^|^XYZ127^|^Key123450^|^DDAReport^|^2023-01-05^|^{"id":"123450"}^|^127^|^ABC12349^|^INR^|^BBAN^|^CARD^|^404
+Bearer 7788990011^|^LbGpjj8KaH5wrEfg^|^192.168.1.6^|^2022-01-06^|^XYZ128^|^Key123451^|^DDIReport^|^2023-01-06^|^{"id":"123451"}^|^128^|^ABC12350^|^AUD^|^BBAN^|^DDA – Current & Savings Accounts^|^405
+Bearer 3344556677^|^LbGpjj8KaH5wrEfg^|^192.168.1.7^|^2022-01-07^|^XYZ129^|^Key123452^|^DDAReport^|^2023-01-07^|^{"id":"123452"}^|^129^|^ABC12351^|^CAD^|^BBAN^|^CDA – Term Deposits^|^406
+Bearer 8899001122^|^LbGpjj8KaH5wrEfg^|^192.168.1.8^|^2022-01-08^|^XYZ130^|^Key123453^|^DDIReport^|^2023-01-08^|^{"id":"123453"}^|^130^|^ABC12352^|^CHF^|^BBAN^|^ILA – Loans^|^415
+Bearer 4455667788^|^LbGpjj8KaH5wrEfg^|^192.168.1.9^|^2022-01-09^|^XYZ131^|^Key123454^|^DDAReport^|^2023-01-09^|^{"id":"123454"}^|^131^|^ABC12353^|^CNY^|^BBAN^|^CCA – Credit Cards^|^500
+Bearer 9900112233^|^LbGpjj8KaH5wrEfg^|^192.168.1.10^|^2022-01-10^|^XYZ132^|^Key123455^|^DDIReport^|^2023-01-10^|^{"id":"123455"}^|^132^|^ABC12354^|^BRL^|^BBAN^|^OTH - Other^|^201
