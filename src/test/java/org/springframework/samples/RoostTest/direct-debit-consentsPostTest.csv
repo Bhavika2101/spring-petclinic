@@ -1,0 +1,11 @@
+Authorization^|^AdditionalCSVvaluInfo^|^Content-Type^|^x-fapi-auth-date^|^x-fapi-customer-ip-address^|^x-fapi-interaction-id^|^Accept-Language^|^data^|^permissions^|^expirationDate^|^statusCode
+auth1234^|^169.254.169.254^|^application/json^|^2022-01-01^|^192.168.0.1^|^interact1234^|^en-HK^|^{"name":"John Doe"}^|^["read", "write"]^|^2023-01-01^|^201
+auth2345^|^169.254.169.254^|^application/xml^|^2022-01-02^|^192.168.0.2^|^interact2345^|^zh-CN^|^{"name":"Jane Doe"}^|^["read"]^|^2023-01-02^|^400
+auth3456^|^169.254.169.254^|^application/json^|^2022-01-03^|^192.168.0.3^|^interact3456^|^zh-HK^|^{"name":"Bob Smith"}^|^["write"]^|^2023-01-03^|^401
+auth4567^|^169.254.169.254^|^application/xml^|^2022-01-04^|^192.168.0.4^|^interact4567^|^en-HK^|^{"name":"Alice Smith"}^|^["read", "write"]^|^2023-01-04^|^403
+auth5678^|^169.254.169.254^|^application/json^|^2022-01-05^|^192.168.0.5^|^interact5678^|^zh-CN^|^{"name":"Charlie Brown"}^|^["read"]^|^2023-01-05^|^405
+auth6789^|^169.254.169.254^|^application/xml^|^2022-01-06^|^192.168.0.6^|^interact6789^|^zh-HK^|^{"name":"Lucy Brown"}^|^["write"]^|^2023-01-06^|^406
+auth7890^|^169.254.169.254^|^application/json^|^2022-01-07^|^192.168.0.7^|^interact7890^|^en-HK^|^{"name":"Tom Jones"}^|^["read", "write"]^|^2023-01-07^|^415
+auth8901^|^169.254.169.254^|^application/xml^|^2022-01-08^|^192.168.0.8^|^interact8901^|^zh-CN^|^{"name":"Mary Jones"}^|^["read"]^|^2023-01-08^|^429
+auth9012^|^169.254.169.254^|^application/json^|^2022-01-09^|^192.168.0.9^|^interact9012^|^zh-HK^|^{"name":"Harry Potter"}^|^["write"]^|^2023-01-09^|^500
+auth0123^|^169.254.169.254^|^application/xml^|^2022-01-10^|^192.168.0.10^|^interact0123^|^en-HK^|^{"name":"Hermione Granger"}^|^["read", "write"]^|^2023-01-10^|^503
