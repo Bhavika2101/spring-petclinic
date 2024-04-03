@@ -1,0 +1,11 @@
+Authorization^|^AdditionalCSVvaluInfo^|^x-fapi-customer-ip-address^|^x-fapi-auth-date^|^x-fapi-interaction-id^|^x-idempotency-key^|^reportType^|^reportingDate^|^creditorAccount^|^bankCode^|^accountIdentification^|^currency^|^accountSchemeName^|^accountSubType^|^statusCode
+Auth123^|^LbGpjj8KaH5wrEfg^|^192.168.1.1^|^2022-04-01^|^Interact123^|^IdemKey123^|^DDAReport^|^2022-04-05^|^CreditorAcc123^|^001^|^AccId123^|^USD^|^BBAN^|^Current Account^|^201
+Auth456^|^LbGpjj8KaH5wrEfg^|^192.168.1.2^|^2022-04-02^|^Interact456^|^IdemKey456^|^DDIReport^|^2022-04-06^|^CreditorAcc456^|^002^|^AccId456^|^GBP^|^BBAN^|^Savings Account^|^400
+Auth789^|^LbGpjj8KaH5wrEfg^|^192.168.1.3^|^2022-04-03^|^Interact789^|^IdemKey789^|^DDAReport^|^2022-04-07^|^CreditorAcc789^|^003^|^AccId789^|^EUR^|^BBAN^|^Student Account^|^401
+Auth321^|^LbGpjj8KaH5wrEfg^|^192.168.1.4^|^2022-04-04^|^Interact321^|^IdemKey321^|^DDIReport^|^2022-04-08^|^CreditorAcc321^|^004^|^AccId321^|^JPY^|^BBAN^|^CACC^|^403
+Auth654^|^LbGpjj8KaH5wrEfg^|^192.168.1.5^|^2022-04-05^|^Interact654^|^IdemKey654^|^DDAReport^|^2022-04-09^|^CreditorAcc654^|^005^|^AccId654^|^AUD^|^BBAN^|^CARD^|^404
+Auth987^|^LbGpjj8KaH5wrEfg^|^192.168.1.6^|^2022-04-06^|^Interact987^|^IdemKey987^|^DDIReport^|^2022-04-10^|^CreditorAcc987^|^006^|^AccId987^|^CAD^|^BBAN^|^DDA – Current & Savings Accounts^|^405
+Auth234^|^LbGpjj8KaH5wrEfg^|^192.168.1.7^|^2022-04-07^|^Interact234^|^IdemKey234^|^DDAReport^|^2022-04-11^|^CreditorAcc234^|^007^|^AccId234^|^NZD^|^BBAN^|^CDA – Term Deposits^|^406
+Auth567^|^LbGpjj8KaH5wrEfg^|^192.168.1.8^|^2022-04-08^|^Interact567^|^IdemKey567^|^DDIReport^|^2022-04-12^|^CreditorAcc567^|^008^|^AccId567^|^ZAR^|^BBAN^|^ILA – Loans^|^415
+Auth890^|^LbGpjj8KaH5wrEfg^|^192.168.1.9^|^2022-04-09^|^Interact890^|^IdemKey890^|^DDAReport^|^2022-04-13^|^CreditorAcc890^|^009^|^AccId890^|^CNY^|^BBAN^|^CCA – Credit Cards^|^500
+Auth1234^|^LbGpjj8KaH5wrEfg^|^192.168.1.10^|^2022-04-10^|^Interact1234^|^IdemKey1234^|^DDIReport^|^2022-04-14^|^CreditorAcc1234^|^010^|^AccId1234^|^INR^|^BBAN^|^OTH - Other^|^201
